@@ -477,7 +477,10 @@ module.exports = withMDX({
     IMAGE_ASSETS_URL: 'https://assets.vercel.com/image/upload/front',
     VIDEO_ASSETS_URL: 'https://assets.vercel.com/video/upload/front',
     RAW_ASSETS_URL: 'https://assets.vercel.com/raw/upload/front',
-    ASSETS: isProd ? '/docs/static' : '/static'
+    ASSETS: isProd ? '/docs/static' : '/static',
+    DATOCMS_KNOWLEDGE_API_ENDPOINT: 'https://graphql.datocms.com/',
+    DATOCMS_KNOWLEDGE_PREVIEW_API_ENDPOINT:
+      'https://graphql.datocms.com/preview'
   },
 
   webpack(config, { isServer }) {
