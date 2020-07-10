@@ -97,9 +97,11 @@ class withStandard extends React.PureComponent {
             image={meta.image}
             lastEdited={meta.lastEdited}
           >
-            {meta.editUrl.includes('/docs/error/') && (
+            {/* { 
+              //TODO: set `noindex` for previews
+              meta.editUrl.includes('/docs/error/') && (
               <meta name="robots" content="noindex" />
-            )}
+            )} */}
           </Head>
           <header className="knowledge-heading">
             <Wrapper width="900">
@@ -124,7 +126,7 @@ class withStandard extends React.PureComponent {
               </NonAmpOnly>
               <ContentFooter
                 lastEdited={meta.lastEdited}
-                editUrl={meta.editUrl}
+                // editUrl={meta.editUrl}
               />
             </section>
           </Wrapper>
