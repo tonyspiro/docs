@@ -2,6 +2,9 @@ import React from 'react'
 import { useAmp } from 'next/amp'
 import { withRouter } from 'next/router'
 import { MDXProvider } from '@mdx-js/tag'
+import unified from 'unified'
+import parse from 'remark-parse'
+import remark2react from 'remark-react'
 
 import Head from '~/components/layout/head'
 import Heading from '~/components/text/linked-heading'
@@ -70,14 +73,87 @@ const DocH4 = ({ children }) => (
 
 const NonAmpOnly = ({ children }) => (useAmp() ? null : children)
 
+const ContentSection = ({ className, key, children }) => (
+  <section className={className} key={key}>
+    {children}
+  </section>
+)
+
+const MarkdownRender = ({ contentType, content }) =>
+  contentType === 'default' ? (
+    <>
+      {
+        unified()
+          .use(parse)
+          .use(remark2react)
+          .processSync(content).result
+      }
+    </>
+  ) : (
+    <>unsupported markdown contentType {contentType}</>
+  )
+
+const KnowledgeBaseContentRender = ({ content }) => (
+  <div>
+    {content.map((block, index) => {
+      console.log('block', block)
+
+      return block._modelApiKey === 'markdown' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          <MarkdownRender
+            contentType={block.contentType}
+            content={block.content}
+          />
+        </ContentSection>
+      ) : block._modelApiKey === 'html' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'image' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'image_external' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'code' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'git_import' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'vercel_deploy_button' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'video' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : block._modelApiKey === 'video_external' ? (
+        <ContentSection className={`${block._modelApiKey}`} key={index}>
+          {block._modelApiKey}
+        </ContentSection>
+      ) : (
+        undefined
+      )
+    })}
+  </div>
+)
+
 class withStandard extends React.PureComponent {
   render() {
     const {
-      meta = {
+      post = {
         title: `${PRODUCT_NAME} Documentation`,
         description: `The knowledge base and documentation for how to use ${PRODUCT_NAME} and how it works.`
       }
     } = this.props
+
+    console.log('post', post)
 
     return (
       <MDXProvider
@@ -92,14 +168,14 @@ class withStandard extends React.PureComponent {
           <Head
             titlePrefix=""
             titleSuffix={` - ${ORG_NAME} Documentation`}
-            title={`${meta.title}`}
-            description={meta.description}
-            image={meta.image}
-            lastEdited={meta.lastEdited}
+            title={`${post.title}`}
+            description={post.description}
+            image={post.image}
+            lastEdited={post.lastEdited}
           >
             {/* { 
               //TODO: set `noindex` for previews
-              meta.editUrl.includes('/docs/error/') && (
+              post.editUrl.includes('/docs/error/') && (
               <meta name="robots" content="noindex" />
             )} */}
           </Head>
@@ -111,13 +187,16 @@ class withStandard extends React.PureComponent {
                 </Link>
               </SubHeader>
               <div className="knowledge-title">
-                <DocH1>{meta.title}</DocH1>
+                <DocH1>{post.title}</DocH1>
               </div>
             </Wrapper>
           </header>
           <Wrapper width="768">
             <section className="knowledge">
-              {this.props.children}
+              {post.content && (
+                <KnowledgeBaseContentRender content={post.content} />
+              )}
+
               <NonAmpOnly>
                 <>
                   <HR />
@@ -125,7 +204,7 @@ class withStandard extends React.PureComponent {
                 </>
               </NonAmpOnly>
               <ContentFooter
-                lastEdited={meta.lastEdited}
+                lastEdited={post.lastEdited}
                 // editUrl={meta.editUrl}
               />
             </section>
