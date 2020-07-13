@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-13T20:20:00.000Z'
+  lastEdited: '2020-07-13T21:53:55.000Z'
 }
 
 ## Platform Version Detection
@@ -225,6 +225,54 @@ It's possible to deploy Serverless Functions to multiple regions, but it's restr
 On the [Pro plan](/pricing), the limitation has been around since the [launch](/blog/simpler-pricing) of the current pricing model but was applied on **July 10, 2020**. For Projects created on or after the date, it's no longer possible to deploy to multiple regions.
 
 To select a single suitable region for your Serverless Functions, please read our [guide](/knowledge/choosing-deployment-regions).
+
+## Unmatched Function Pattern
+
+The [`functions`](/docs/configuration#project/functions) property uses a glob pattern for each key. This pattern must match Serverless Function source files within the `api` directory.
+
+If you are using Next.js, Serverless Functions source files can be created in the following:
+
+- `api` directory
+- `pages/api` directory
+- `src/pages/api` directory
+- `pages` directory when the module exports [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)
+- `src/pages` directory when the module exports [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)
+
+**Not Allowed**
+
+```json
+{
+  "functions": {
+    "users/**/*.js": {
+      "maxDuration": 30
+    }
+  }
+}
+```
+
+**Allowed**
+
+```json
+{
+  "functions": {
+    "api/users/**/*.js": {
+      "maxDuration": 30
+    }
+  }
+}
+```
+
+**Allowed (Next.js)**
+
+```json
+{
+  "functions": {
+    "pages/api/users/**/*.js": {
+      "maxDuration": 30
+    }
+  }
+}
+```
 
 ## Cannot Load Project Settings
 
