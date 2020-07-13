@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAmp } from 'next/amp'
 import { withRouter } from 'next/router'
-import { MDXProvider } from '@mdx-js/tag'
 import unified from 'unified'
 import parse from 'remark-parse'
 import remark2react from 'remark-react'
@@ -79,13 +78,15 @@ const ContentSection = ({ className, key, children }) => (
   </section>
 )
 
-const MarkdownRender = ({ contentType, content }) =>
+const MarkdownRender = ({ contentType, content, customComponents }) =>
   contentType === 'default' ? (
     <>
       {
         unified()
           .use(parse)
-          .use(remark2react)
+          .use(remark2react, {
+            remarkReactComponents: customComponents
+          })
           .processSync(content).result
       }
     </>
@@ -93,7 +94,7 @@ const MarkdownRender = ({ contentType, content }) =>
     <>unsupported markdown contentType {contentType}</>
   )
 
-const KnowledgeBaseContentRender = ({ content }) => (
+const KnowledgeBaseContentRender = ({ content, customComponents }) => (
   <div>
     {content.map((block, index) => {
       console.log('block', block)
@@ -103,6 +104,7 @@ const KnowledgeBaseContentRender = ({ content }) => (
           <MarkdownRender
             contentType={block.contentType}
             content={block.content}
+            customComponents={customComponents}
           />
         </ContentSection>
       ) : block._modelApiKey === 'html' ? (
@@ -156,79 +158,78 @@ class withStandard extends React.PureComponent {
     console.log('post', post)
 
     return (
-      <MDXProvider
-        components={{
-          ...components,
-          h2: DocH2,
-          h3: DocH3,
-          h4: DocH4
-        }}
-      >
-        <>
-          <Head
-            titlePrefix=""
-            titleSuffix={` - ${ORG_NAME} Documentation`}
-            title={`${post.title}`}
-            description={post.description}
-            image={post.image}
-            lastEdited={post.lastEdited}
-          >
-            {/* { 
-              //TODO: set `noindex` for previews
-              post.editUrl.includes('/docs/error/') && (
-              <meta name="robots" content="noindex" />
-            )} */}
-          </Head>
-          <header className="knowledge-heading">
-            <Wrapper width="900">
-              <SubHeader title="Knowledge">
-                <Link href="/knowledge" style={{ fontSize: 14 }}>
-                  View All Articles
-                </Link>
-              </SubHeader>
-              <div className="knowledge-title">
-                <DocH1>{post.title}</DocH1>
-              </div>
-            </Wrapper>
-          </header>
-          <Wrapper width="768">
-            <section className="knowledge">
-              {post.content && (
-                <KnowledgeBaseContentRender content={post.content} />
-              )}
-
-              <NonAmpOnly>
-                <>
-                  <HR />
-                  <FooterFeedback />
-                </>
-              </NonAmpOnly>
-              <ContentFooter
-                lastEdited={post.lastEdited}
-                // editUrl={meta.editUrl}
-              />
-            </section>
+      <>
+        <Head
+          titlePrefix=""
+          titleSuffix={` - ${ORG_NAME} Documentation`}
+          title={`${post.title}`}
+          description={post.description}
+          image={post.image}
+          lastEdited={post.lastEdited}
+        >
+          {/* { 
+            //TODO: set `noindex` for previews
+            post.editUrl.includes('/docs/error/') && (
+            <meta name="robots" content="noindex" />
+          )} */}
+        </Head>
+        <header className="knowledge-heading">
+          <Wrapper width="900">
+            <SubHeader title="Knowledge">
+              <Link href="/knowledge" style={{ fontSize: 14 }}>
+                View All Articles
+              </Link>
+            </SubHeader>
+            <div className="knowledge-title">
+              <DocH1>{post.title}</DocH1>
+            </div>
           </Wrapper>
-          <Footer />
-          <style jsx>{`
-            .knowledge-heading {
-              border-bottom: 1px solid #eaeaea;
-              margin-top: 36px;
-              padding-bottom: 44px;
-              text-align: center;
-            }
+        </header>
+        <Wrapper width="768">
+          <section className="knowledge">
+            {post.content && (
+              <KnowledgeBaseContentRender
+                content={post.content}
+                customComponents={{
+                  ...components,
+                  h2: DocH2,
+                  h3: DocH3,
+                  h4: DocH4
+                }}
+              />
+            )}
 
-            .knowledge-title {
-              padding-top: 15px;
-            }
+            <NonAmpOnly>
+              <>
+                <HR />
+                <FooterFeedback />
+              </>
+            </NonAmpOnly>
+            <ContentFooter
+              lastEdited={post.lastEdited}
+              // editUrl={meta.editUrl}
+            />
+          </section>
+        </Wrapper>
+        <Footer />
+        <style jsx>{`
+          .knowledge-heading {
+            border-bottom: 1px solid #eaeaea;
+            margin-top: 36px;
+            padding-bottom: 44px;
+            text-align: center;
+          }
 
-            .knowledge {
-              padding-bottom: 64px;
-              padding-top: 32px;
-            }
-          `}</style>
-        </>
-      </MDXProvider>
+          .knowledge-title {
+            padding-top: 15px;
+          }
+
+          .knowledge {
+            padding-bottom: 64px;
+            padding-top: 32px;
+          }
+        `}</style>
+      </>
     )
   }
 }
