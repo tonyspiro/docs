@@ -8,12 +8,13 @@ import OrgName from '~/components/name/org-name'
 import NameWrapper from '~/components/name/name-wrapper'
 import { PRODUCT_NAME } from '~/lib/constants'
 import ProductShortName from '~/components/name/product-short-name'
+import Snippet from '~/components/snippet'
 
 export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-10T18:29:01.000Z'
+  lastEdited: '2020-07-13T20:20:00.000Z'
 }
 
 ## Platform Version Detection
@@ -227,8 +228,16 @@ To select a single suitable region for your Serverless Functions, please read ou
 
 ## Cannot Load Project Settings
 
-If the project configuration in `.vercel` belongs to a team you are not a member of, attempting to deploy the project will result in an error.
+If the Project configuration in `.vercel` belongs to a Team you are not a member of, attempting to deploy the Project will result in an error.
 
-This may happen if you clone a repository that includes the `.vercel` directory, or you are logged in to the wrong Vercel account.
+This may happen if you clone a Git repository that includes the `.vercel` directory, or you are logged in to the wrong Vercel Account.
 
-To fix it, remove the `.vercel` directory and deploy to link the project again.
+To fix it, remove the `.vercel` directory and deploy to link the Project again by running these commands.
+
+On macOS and Linux:
+
+<Snippet text={['rm -rf .vercel', 'vercel']} dark />
+
+On Windows:
+
+<Snippet text={['rmdir /s /q .vercel', 'vercel']} dark />
