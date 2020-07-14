@@ -39,6 +39,8 @@ const Note = ({
           line-height: 1.8;
           color: var(--themed-fg);
           border-radius: var(--geist-radius);
+          margin-top: 1.5rem;
+          margin-bottom: 1.5rem;
         }
 
         .note .label {
