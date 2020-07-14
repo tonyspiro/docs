@@ -1,10 +1,6 @@
 import React from 'react'
 import { useAmp } from 'next/amp'
 import { withRouter } from 'next/router'
-import unified from 'unified'
-import markdown from 'remark-parse'
-import remark2rehype from 'remark-rehype'
-import rehype2react from 'rehype-react'
 
 import Head from '~/components/layout/head'
 import Heading from '~/components/text/linked-heading'
@@ -19,6 +15,10 @@ import Link from '~/components/text/link'
 import Footer from '~/components/footer'
 import Wrapper from '~/components/layout/wrapper'
 
+import unified from 'unified'
+import markdown from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import rehype2react from 'rehype-react'
 import { RemarkImage } from '~/components/media'
 import RemarkNote from '~/components/text/remark-note'
 
