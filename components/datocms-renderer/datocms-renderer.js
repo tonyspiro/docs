@@ -30,6 +30,8 @@ const DatoCMSRenderer = ({ content, ...props }) => (
       ) : block._modelApiKey === 'image' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
           <RemarkImage
+            href={block.imageAnchor}
+            target={block.openAnchorInNewWindow === true ? '_blank' : undefined}
             src={block.image.url}
             width={block.image.width}
             height={block.image.height}

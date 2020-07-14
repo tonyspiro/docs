@@ -65,6 +65,7 @@ export async function getStaticProps({ params: {slug} } ) {
               id
               caption
               imageAnchor
+              openAnchorInNewWindow
               _modelApiKey
               image {
                 url
@@ -97,6 +98,7 @@ export async function getStaticProps({ params: {slug} } ) {
             ... on ImageExternalRecord {
               id
               imageAnchor
+              openAnchorInNewWindow
               imageUrl
               caption
               _modelApiKey
