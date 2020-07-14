@@ -25,7 +25,12 @@ const DatoCMSRenderer = ({ content, ...props }) => (
         </ContentSection>
       ) : block._modelApiKey === 'html' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+            unsupported block type:{' '}
+            <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+              {block._modelApiKey}
+            </pre>
+          </div>
         </ContentSection>
       ) : block._modelApiKey === 'image' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
@@ -51,23 +56,48 @@ const DatoCMSRenderer = ({ content, ...props }) => (
         </ContentSection>
       ) : block._modelApiKey === 'code' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+            unsupported block type:{' '}
+            <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+              {block._modelApiKey}
+            </pre>
+          </div>
         </ContentSection>
       ) : block._modelApiKey === 'git_import' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+            unsupported block type:{' '}
+            <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+              {block._modelApiKey}
+            </pre>
+          </div>
         </ContentSection>
       ) : block._modelApiKey === 'vercel_deploy_button' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+            unsupported block type:{' '}
+            <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+              {block._modelApiKey}
+            </pre>
+          </div>
         </ContentSection>
       ) : block._modelApiKey === 'video' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+            unsupported block type:{' '}
+            <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+              {block._modelApiKey}
+            </pre>
+          </div>
         </ContentSection>
       ) : block._modelApiKey === 'video_external' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+            unsupported block type:{' '}
+            <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+              {block._modelApiKey}
+            </pre>
+          </div>
         </ContentSection>
       ) : (
         undefined

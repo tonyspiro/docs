@@ -31,7 +31,12 @@ const RemarkRenderer = ({ contentType, children, components }) => {
   ) : contentType === undefined ? (
     <>{markdownProcessor.processSync(children).result}</>
   ) : (
-    <>unsupported markdown contentType {contentType}</>
+    <div style={{ marginLeft: '2rem', fontSize: '0.9rem' }}>
+      unsupported <b>markdown</b> contentType type:{' '}
+      <pre style={{ display: 'inline', backgroundColor: '#FFFF00' }}>
+        {contentType}
+      </pre>
+    </div>
   )
 }
 
