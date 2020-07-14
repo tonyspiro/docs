@@ -7,7 +7,7 @@ const ContentSection = ({ className, children }) => (
 )
 
 const DatoCMSRenderer = ({ content, ...props }) => (
-  <div>
+  <article>
     {content.map((block, index) => {
       console.log('block', block)
 
@@ -66,8 +66,14 @@ const DatoCMSRenderer = ({ content, ...props }) => (
         undefined
       )
     })}
-    <style jsx>{``}</style>
-  </div>
+    <style jsx>{`
+      article :global(p > img) {
+        display: block;
+        margin: 40px auto;
+        text-align: center;
+      }
+    `}</style>
+  </article>
 )
 
 export default DatoCMSRenderer
