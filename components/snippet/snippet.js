@@ -12,7 +12,11 @@ const Snippet = memo(
     const toasts = useToasts()
 
     const copyToClipboard = useCallback(() => {
-      copy(text)
+      if (Array.isArray(text)) {
+        copy(text.join('\n'))
+      } else {
+        copy(text)
+      }
 
       // Show a toast confirming the copy effect
       if (toasts && toasts.current) {
@@ -28,7 +32,15 @@ const Snippet = memo(
 
     return (
       <div className={cn('snippet-wrapper', { prompt })}>
-        <pre className="geist-overflow-scroll-y">{text}</pre>
+        {Array.isArray(text) ? (
+          text.map((line, i) => (
+            <pre className="geist-overflow-scroll-y" key={i}>
+              {line}
+            </pre>
+          ))
+        ) : (
+          <pre className="geist-overflow-scroll-y">{text}</pre>
+        )}
 
         {clipboard && (
           <div className="copy" onClick={copyToClipboard}>
