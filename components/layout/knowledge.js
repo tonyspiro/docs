@@ -19,6 +19,8 @@ import Link from '~/components/text/link'
 import Footer from '~/components/footer'
 import Wrapper from '~/components/layout/wrapper'
 
+import Note from '~/components/text/remark-note'
+
 const DocH1 = ({ children }) => (
   <>
     <Heading noAnchor lean offsetTop={175}>
@@ -95,6 +97,10 @@ const markdownProcessor = unified()
 const MarkdownRender = ({ contentType, content }) =>
   contentType === 'default' ? (
     <>{markdownProcessor.processSync(content).result}</>
+  ) : contentType === 'note' ? (
+    <Note type="note">{markdownProcessor.processSync(content).result}</Note>
+  ) : contentType === 'warning' ? (
+    <Note type="warning">{markdownProcessor.processSync(content).result}</Note>
   ) : (
     <>unsupported markdown contentType {contentType}</>
   )
