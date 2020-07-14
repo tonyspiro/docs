@@ -15,8 +15,7 @@ import Link from '~/components/text/link'
 import Footer from '~/components/footer'
 import Wrapper from '~/components/layout/wrapper'
 
-import { RemarkImage } from '~/components/media'
-import RemarkRenderer from '~/components/remark-renderer'
+import DatoCMSRenderer from '~/components/datocms-renderer'
 
 const DocH1 = ({ children }) => (
   <>
@@ -72,77 +71,6 @@ const DocH4 = ({ children }) => (
 
 const NonAmpOnly = ({ children }) => (useAmp() ? null : children)
 
-const ContentSection = ({ className, key, children }) => (
-  <section className={className} key={key}>
-    {children}
-  </section>
-)
-
-const KnowledgeBaseContentRender = ({ content }) => (
-  <div>
-    {content.map((block, index) => {
-      console.log('block', block)
-
-      return block._modelApiKey === 'markdown' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          <RemarkRenderer
-            components={{
-              ...components,
-              h2: DocH2,
-              h3: DocH3,
-              h4: DocH4
-            }}
-            contentType={block.contentType}
-          >
-            {block.content}
-          </RemarkRenderer>
-        </ContentSection>
-      ) : block._modelApiKey === 'html' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : block._modelApiKey === 'image' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          <RemarkImage
-            src={block.image.url}
-            width={block.image.width}
-            height={block.image.height}
-            title={block.image.title}
-            alt={block.image.alt}
-            caption={block.caption}
-          />
-        </ContentSection>
-      ) : block._modelApiKey === 'image_external' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : block._modelApiKey === 'code' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : block._modelApiKey === 'git_import' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : block._modelApiKey === 'vercel_deploy_button' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : block._modelApiKey === 'video' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : block._modelApiKey === 'video_external' ? (
-        <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
-        </ContentSection>
-      ) : (
-        undefined
-      )
-    })}
-  </div>
-)
-
 class withStandard extends React.PureComponent {
   render() {
     const {
@@ -185,7 +113,15 @@ class withStandard extends React.PureComponent {
         <Wrapper width="768">
           <section className="knowledge">
             {post.content && (
-              <KnowledgeBaseContentRender content={post.content} />
+              <DatoCMSRenderer
+                components={{
+                  ...components,
+                  h2: DocH2,
+                  h3: DocH3,
+                  h4: DocH4
+                }}
+                content={post.content}
+              />
             )}
 
             <NonAmpOnly>
