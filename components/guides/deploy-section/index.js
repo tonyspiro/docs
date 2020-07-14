@@ -5,7 +5,7 @@ import { DeployButton } from '~/components/buttons'
 export default function DeploySection({ meta }) {
   return (
     <>
-      <GitDeploy name={meta.name} type={meta.type} />
+      <GitDeploy env={meta.env} name={meta.name} type={meta.type} />
       {meta.demo && (
         <p>
           Once deployed, you will get a URL to see your {meta.type} live, such
