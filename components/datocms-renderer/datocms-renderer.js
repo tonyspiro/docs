@@ -42,7 +42,12 @@ const DatoCMSRenderer = ({ content, ...props }) => (
         </ContentSection>
       ) : block._modelApiKey === 'image_external' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <RemarkImage
+            href={block.imageAnchor}
+            target={block.openAnchorInNewWindow === true ? '_blank' : undefined}
+            src={block.imageUrl}
+            caption={block.caption}
+          />
         </ContentSection>
       ) : block._modelApiKey === 'code' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
