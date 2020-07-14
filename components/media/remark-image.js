@@ -10,12 +10,22 @@ const RemarkImage = ({
 }) => {
   const Image = ({ src, width, height, title, alt }) => (
     <figure>
-      <img src={src} width={width} height={height} title={title} alt={alt} />
+      <main>
+        <div>
+          <img
+            src={src}
+            width={width}
+            height={height}
+            title={title}
+            alt={alt}
+          />
+        </div>
+      </main>
     </figure>
   )
 
   return (
-    <div>
+    <div className="remark-image">
       {href ? (
         <a href={href} target={target} rel="noopener">
           <Image {...props} />
@@ -33,19 +43,20 @@ const RemarkImage = ({
       </RemarkCaption>
 
       <style jsx>{`
-        div {
+        div.remark-image {
           margin: 40px auto;
         }
 
-        div :global(figure) {
+        div.remark-image :global(figure) {
           text-align: center;
         }
 
-        div :global(figure img) {
+        div.remark-image :global(figure main div img) {
           width: unset;
           max-width: 100%;
           height: auto;
           position: relative;
+          margin-bottom: 1.5rem;
         }
       `}</style>
     </div>
