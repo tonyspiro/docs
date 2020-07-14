@@ -19,6 +19,7 @@ import Link from '~/components/text/link'
 import Footer from '~/components/footer'
 import Wrapper from '~/components/layout/wrapper'
 
+import { RemarkImage } from '~/components/media'
 import RemarkNote from '~/components/text/remark-note'
 
 const DocH1 = ({ children }) => (
@@ -127,7 +128,14 @@ const KnowledgeBaseContentRender = ({ content }) => (
         </ContentSection>
       ) : block._modelApiKey === 'image' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          {block._modelApiKey}
+          <RemarkImage
+            src={block.image.url}
+            width={block.image.width}
+            height={block.image.height}
+            title={block.image.title}
+            alt={block.image.alt}
+            caption={block.caption}
+          />
         </ContentSection>
       ) : block._modelApiKey === 'image_external' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>

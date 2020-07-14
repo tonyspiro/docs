@@ -66,6 +66,13 @@ export async function getStaticProps({ params: {slug} } ) {
               caption
               imageAnchor
               _modelApiKey
+              image {
+                url
+                width
+                height
+                alt
+                title
+              }
             }
             ... on CodeRecord {
               id
