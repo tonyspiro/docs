@@ -11,7 +11,7 @@ const RemarkImage = ({ caption, href, target, ...props }) => {
     <Image {...props} />
   )
   return (
-    <>
+    <div>
       {img}
       <RemarkCaption
         components={{
@@ -21,7 +21,13 @@ const RemarkImage = ({ caption, href, target, ...props }) => {
       >
         {caption}
       </RemarkCaption>
-    </>
+
+      <style jsx>{`
+        div :global(img) {
+          height: auto;
+        }
+      `}</style>
+    </div>
   )
 }
 
