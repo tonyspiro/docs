@@ -55,7 +55,7 @@ const Knowledge = ({ posts }) => (
                 </div>
                 <div className="meta">
                   <span className="date">
-                    Added on {formatDate(post._publishedAt, 'MMMM Do YYYY')}
+                    Published at {formatDate(post._publishedAt, 'MMMM Do YYYY')}
                   </span>
                 </div>
               </article>
