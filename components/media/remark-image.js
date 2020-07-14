@@ -23,8 +23,16 @@ const RemarkImage = ({ caption, href, target, ...props }) => {
       </RemarkCaption>
 
       <style jsx>{`
-        div :global(img) {
+        div :global(figure main div.container) {
+          display: block;
+          padding-bottom: 0 !important;
+        }
+
+        div :global(figure main div img) {
+          width: unset;
+          max-width: 100%;
           height: auto;
+          position: relative;
         }
       `}</style>
     </div>
