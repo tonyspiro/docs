@@ -208,7 +208,7 @@ class withStandard extends React.PureComponent {
               </>
             </NonAmpOnly>
             <ContentFooter
-              lastEdited={post.lastEdited}
+              lastEdited={post._updatedAt}
               // editUrl={meta.editUrl}
             />
           </section>
