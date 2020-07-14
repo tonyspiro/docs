@@ -2,13 +2,14 @@ import React from 'react'
 import { useAmp } from 'next/amp'
 import { withRouter } from 'next/router'
 import unified from 'unified'
-import parse from 'remark-parse'
-import remark2react from 'remark-react'
+import markdown from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import rehype2react from 'rehype-react'
 
 import Head from '~/components/layout/head'
 import Heading from '~/components/text/linked-heading'
 import ContentFooter from '~/components/layout/content-footer'
-import components from '~/lib/mdx-components'
+import components from '~/lib/remark-components'
 import { H1, H2, H3, H4 } from '~/components/text'
 import HR from '~/components/text/hr'
 import { FooterFeedback } from '~/components/feedback-input'
@@ -78,23 +79,27 @@ const ContentSection = ({ className, key, children }) => (
   </section>
 )
 
-const MarkdownRender = ({ contentType, content, customComponents }) =>
+const markdownProcessor = unified()
+  .use(markdown)
+  .use(remark2rehype)
+  .use(rehype2react, {
+    createElement: React.createElement,
+    components: {
+      ...components,
+      h2: DocH2,
+      h3: DocH3,
+      h4: DocH4
+    }
+  })
+
+const MarkdownRender = ({ contentType, content }) =>
   contentType === 'default' ? (
-    <>
-      {
-        unified()
-          .use(parse)
-          .use(remark2react, {
-            remarkReactComponents: customComponents
-          })
-          .processSync(content).result
-      }
-    </>
+    <>{markdownProcessor.processSync(content).result}</>
   ) : (
     <>unsupported markdown contentType {contentType}</>
   )
 
-const KnowledgeBaseContentRender = ({ content, customComponents }) => (
+const KnowledgeBaseContentRender = ({ content }) => (
   <div>
     {content.map((block, index) => {
       console.log('block', block)
@@ -104,7 +109,6 @@ const KnowledgeBaseContentRender = ({ content, customComponents }) => (
           <MarkdownRender
             contentType={block.contentType}
             content={block.content}
-            customComponents={customComponents}
           />
         </ContentSection>
       ) : block._modelApiKey === 'html' ? (
@@ -188,15 +192,7 @@ class withStandard extends React.PureComponent {
         <Wrapper width="768">
           <section className="knowledge">
             {post.content && (
-              <KnowledgeBaseContentRender
-                content={post.content}
-                customComponents={{
-                  ...components,
-                  h2: DocH2,
-                  h3: DocH3,
-                  h4: DocH4
-                }}
-              />
+              <KnowledgeBaseContentRender content={post.content} />
             )}
 
             <NonAmpOnly>
