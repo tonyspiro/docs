@@ -2,7 +2,13 @@ import { Image } from '~/components/media'
 import RemarkCaption from '~/components/text/remark-caption'
 import components from '~/lib/remark-components'
 
-const RemarkImage = ({ caption, href, target, ...props }) => {
+const RemarkImage = ({
+  caption,
+  href,
+  target,
+  components: customComponents,
+  ...props
+}) => {
   const img = href ? (
     <a href={href} target={target} rel="noopener">
       <Image {...props} />
@@ -16,7 +22,7 @@ const RemarkImage = ({ caption, href, target, ...props }) => {
       <RemarkCaption
         components={{
           ...components,
-          ...props.components
+          ...customComponents
         }}
       >
         {caption}

@@ -2,12 +2,16 @@ import React from 'react'
 import RemarkRenderer from '~/components/remark-renderer'
 import components from '~/lib/remark-components'
 
-const RemarkCaption = ({ children, ...props }) => (
+const RemarkCaption = ({
+  children,
+  components: customComponents,
+  ...props
+}) => (
   <p {...props} className="caption">
     <RemarkRenderer
       components={{
         ...components,
-        ...props.components
+        ...customComponents
       }}
     >
       {children}
