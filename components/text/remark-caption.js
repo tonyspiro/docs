@@ -1,21 +1,17 @@
 import React from 'react'
-import unified from 'unified'
-import markdown from 'remark-parse'
-import remark2rehype from 'remark-rehype'
-import rehype2react from 'rehype-react'
-
+import RemarkRenderer from '~/components/remark-renderer'
 import components from '~/lib/remark-components'
-const markdownProcessor = unified()
-  .use(markdown)
-  .use(remark2rehype)
-  .use(rehype2react, {
-    createElement: React.createElement,
-    components
-  })
 
 const RemarkCaption = ({ children, ...props }) => (
   <p {...props} className="caption">
-    {markdownProcessor.processSync(children).result}
+    <RemarkRenderer
+      components={{
+        ...components,
+        ...props.components
+      }}
+    >
+      {children}
+    </RemarkRenderer>
     <style jsx>
       {`
         p {
@@ -33,28 +29,28 @@ const RemarkCaption = ({ children, ...props }) => (
   </p>
 )
 
-const Code = ({ children }) => (
-  <code>
-    {children}
-    <style jsx>
-      {`
-        code {
-          color: #666;
-          font-family: var(--font-mono);
-        }
+// const Code = ({ children }) => (
+//   <code>
+//     {children}
+//     <style jsx>
+//       {`
+//         code {
+//           color: #666;
+//           font-family: var(--font-mono);
+//         }
 
-        code::before {
-          content: '\`';
-        }
+//         code::before {
+//           content: '\`';
+//         }
 
-        code::after {
-          content: '\`';
-        }
-      `}
-    </style>
-  </code>
-)
+//         code::after {
+//           content: '\`';
+//         }
+//       `}
+//     </style>
+//   </code>
+// )
 
-RemarkCaption.Code = Code
+// RemarkCaption.Code = Code
 
 export default RemarkCaption

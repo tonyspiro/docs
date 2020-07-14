@@ -15,14 +15,8 @@ import Link from '~/components/text/link'
 import Footer from '~/components/footer'
 import Wrapper from '~/components/layout/wrapper'
 
-import unified from 'unified'
-import markdown from 'remark-parse'
-import remark2rehype from 'remark-rehype'
-import rehype2react from 'rehype-react'
-
 import { RemarkImage } from '~/components/media'
-import RemarkNote from '~/components/text/remark-note'
-import RemarkCaption from '~/components/text/remark-caption'
+import RemarkRenderer from '~/components/remark-renderer'
 
 const DocH1 = ({ children }) => (
   <>
@@ -84,36 +78,6 @@ const ContentSection = ({ className, key, children }) => (
   </section>
 )
 
-const markdownProcessor = unified()
-  .use(markdown)
-  .use(remark2rehype)
-  .use(rehype2react, {
-    createElement: React.createElement,
-    components: {
-      ...components,
-      h2: DocH2,
-      h3: DocH3,
-      h4: DocH4
-    }
-  })
-
-const MarkdownRender = ({ contentType, content }) =>
-  contentType === 'default' ? (
-    <>{markdownProcessor.processSync(content).result}</>
-  ) : contentType === 'note' ? (
-    <RemarkNote type="note">
-      {markdownProcessor.processSync(content).result}
-    </RemarkNote>
-  ) : contentType === 'warning' ? (
-    <RemarkNote type="warning">
-      {markdownProcessor.processSync(content).result}
-    </RemarkNote>
-  ) : contentType === 'caption' ? (
-    <RemarkCaption>{content}</RemarkCaption>
-  ) : (
-    <>unsupported markdown contentType {contentType}</>
-  )
-
 const KnowledgeBaseContentRender = ({ content }) => (
   <div>
     {content.map((block, index) => {
@@ -121,10 +85,17 @@ const KnowledgeBaseContentRender = ({ content }) => (
 
       return block._modelApiKey === 'markdown' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
-          <MarkdownRender
+          <RemarkRenderer
+            components={{
+              ...components,
+              h2: DocH2,
+              h3: DocH3,
+              h4: DocH4
+            }}
             contentType={block.contentType}
-            content={block.content}
-          />
+          >
+            {block.content}
+          </RemarkRenderer>
         </ContentSection>
       ) : block._modelApiKey === 'html' ? (
         <ContentSection className={`${block._modelApiKey}`} key={index}>
