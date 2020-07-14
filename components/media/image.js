@@ -70,7 +70,9 @@ class Image extends Component {
       children,
       shadow,
       align = 'center',
-      layout
+      layout,
+      title,
+      alt
     } = this.props
 
     const aspectRatio = String((height / width) * 100) + '%'
@@ -96,6 +98,8 @@ class Image extends Component {
                     src={this.state.src || null}
                     width={width}
                     height={height}
+                    title={title}
+                    alt={alt}
                   />
                 ) : (
                   children
