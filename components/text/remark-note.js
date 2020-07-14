@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Text from '~/components/text'
 import withType from '~/lib/with-type'
 
-const Note = ({
+const RemarkNote = ({
   children,
   className,
   type = 'default',
@@ -94,7 +94,7 @@ const Note = ({
   )
 }
 
-Note.propTypes = {
+RemarkNote.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   hideLabel: PropTypes.bool,
@@ -109,4 +109,4 @@ Note.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 }
 
-export default withType(Note)
+export default withType(RemarkNote)

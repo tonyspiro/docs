@@ -19,7 +19,7 @@ import Link from '~/components/text/link'
 import Footer from '~/components/footer'
 import Wrapper from '~/components/layout/wrapper'
 
-import Note from '~/components/text/remark-note'
+import RemarkNote from '~/components/text/remark-note'
 
 const DocH1 = ({ children }) => (
   <>
@@ -98,9 +98,13 @@ const MarkdownRender = ({ contentType, content }) =>
   contentType === 'default' ? (
     <>{markdownProcessor.processSync(content).result}</>
   ) : contentType === 'note' ? (
-    <Note type="note">{markdownProcessor.processSync(content).result}</Note>
+    <RemarkNote type="note">
+      {markdownProcessor.processSync(content).result}
+    </RemarkNote>
   ) : contentType === 'warning' ? (
-    <Note type="warning">{markdownProcessor.processSync(content).result}</Note>
+    <RemarkNote type="warning">
+      {markdownProcessor.processSync(content).result}
+    </RemarkNote>
   ) : (
     <>unsupported markdown contentType {contentType}</>
   )
