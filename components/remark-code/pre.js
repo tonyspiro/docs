@@ -1,6 +1,6 @@
 const Pre = ({ children }) => (
   <pre>
-    !!!{children}
+    {children}
     <style jsx>
       {`
         pre {
