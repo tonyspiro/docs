@@ -19,8 +19,10 @@ import unified from 'unified'
 import markdown from 'remark-parse'
 import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
+
 import { RemarkImage } from '~/components/media'
 import RemarkNote from '~/components/text/remark-note'
+import RemarkCaption from '~/components/text/remark-caption'
 
 const DocH1 = ({ children }) => (
   <>
@@ -106,6 +108,8 @@ const MarkdownRender = ({ contentType, content }) =>
     <RemarkNote type="warning">
       {markdownProcessor.processSync(content).result}
     </RemarkNote>
+  ) : contentType === 'caption' ? (
+    <RemarkCaption>{content}</RemarkCaption>
   ) : (
     <>unsupported markdown contentType {contentType}</>
   )
