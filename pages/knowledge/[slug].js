@@ -100,6 +100,10 @@ export async function getStaticProps({ params: {slug} } ) {
               imageAnchor
               openAnchorInNewWindow
               imageUrl
+              imageWidth
+              imageHeight
+              imageTitle
+              imageAlt
               caption
               _modelApiKey
             }

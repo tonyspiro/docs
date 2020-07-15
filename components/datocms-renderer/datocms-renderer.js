@@ -51,6 +51,10 @@ const DatoCMSRenderer = ({ content, ...props }) => (
             href={block.imageAnchor}
             target={block.openAnchorInNewWindow === true ? '_blank' : undefined}
             src={block.imageUrl}
+            width={block.imageWidth}
+            height={block.imageHeight}
+            title={block.imageTitle}
+            alt={block.imageAlt}
             caption={block.caption}
           />
         </ContentSection>
