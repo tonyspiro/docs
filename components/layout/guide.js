@@ -93,7 +93,13 @@ class Guide extends React.PureComponent {
             <Wrapper width="768">
               <section className="guide content">
                 {meta.example && meta.demo && (
-                  <DeployBanner example={meta.example} demo={meta.demo} />
+                  <DeployBanner
+                    env={meta.env}
+                    envDescription={meta.envDescription}
+                    envLink={meta.envLink}
+                    example={meta.example}
+                    demo={meta.demo}
+                  />
                 )}
                 {this.props.children}
                 <NonAmpOnly>

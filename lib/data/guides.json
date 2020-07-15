@@ -220,12 +220,15 @@
     "authors": ["coetry"],
     "url": "/guides/deploying-next-and-userbase-with-vercel",
     "env": ["NEXT_PUBLIC_USERBASE_APP_ID"],
+    "envDescription": ["The Userbase app ID, found in the Userbase dashboard."],
+    "envLink": ["https://v1.userbase.com/"],
     "image": "https://assets.zeit.co/image/upload/v1587744671/twitter-cards/next_userbase_vercel_og_image.png",
     "editUrl": "pages/guides/deploying-next-and-userbase-with-vercel.mdx",
+    "example": "https://github.com/vercel/next.js/tree/canary/examples/with-userbase",
     "demo": "https://next-userbase.vercel.app",
     "name": "Next.js + Userbase",
     "type": "app",
-    "lastEdited": "2020-07-15T14:18:08.000Z"
+    "lastEdited": "2020-07-15T15:03:40.000Z"
   },
   {
     "title": "Debug and Troubleshoot Logs with Vercel and Sematext",
