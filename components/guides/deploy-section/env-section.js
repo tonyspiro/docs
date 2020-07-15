@@ -7,7 +7,7 @@ const EnvSection = ({ env }) => {
     <>
       <p>
         During the import process, you will need to add the following
-        environment variables:
+        environment variable{env.length > 1 ? 's' : ''}:
       </p>
       <UL>
         {env.map(e => (

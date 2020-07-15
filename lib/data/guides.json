@@ -214,6 +214,20 @@
     "rank": 25
   },
   {
+    "title": "Deploy Next.js and Userbase with Vercel",
+    "description": "Create a Todo app with Next.js and Userbase and deploy it live with Vercel.",
+    "published": "2020-07-15T12:00:00.860Z",
+    "authors": ["coetry"],
+    "url": "/guides/deploying-next-and-userbase-with-vercel",
+    "env": ["NEXT_PUBLIC_USERBASE_APP_ID"],
+    "image": "https://assets.zeit.co/image/upload/v1587744671/twitter-cards/next_userbase_vercel_og_image.png",
+    "editUrl": "pages/guides/deploying-next-and-userbase-with-vercel.mdx",
+    "demo": "https://next-userbase.vercel.app",
+    "name": "Next.js + Userbase",
+    "type": "app",
+    "lastEdited": "2020-07-15T14:18:08.000Z"
+  },
+  {
     "title": "Debug and Troubleshoot Logs with Vercel and Sematext",
     "description": "Automatically send all Vercel logs to Sematext to understand how your application is running.",
     "published": "2020-06-18T17:18:39.807Z",
