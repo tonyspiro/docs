@@ -19,7 +19,12 @@ export default function DeploySection({ meta }) {
             button, and create a Git repository for it in the process for
             automatic deployments for your updates.
           </p>
-          <DeployButton url={meta.example} />
+          <DeployButton
+            env={meta.env}
+            envDescription={meta.envDescription}
+            envLink={meta.envLink}
+            url={meta.example}
+          />
         </>
       )}
       <style jsx>{`
