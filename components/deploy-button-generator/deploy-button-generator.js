@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useAmp } from 'next/amp'
 import Tabs from '~/components/tabs'
 import Snippet from '~/components/snippet'
 import Details from '~/components/details'
@@ -35,6 +36,7 @@ export default function DeployButtonGenerator() {
   const [developerIdError, setDeveloperIdError] = useState('')
   const [projectName, setProjectName] = useState('')
   const [repoName, setRepoName] = useState('')
+  const isAmp = useAmp()
   const importUrl = 'https://vercel.com/import/git'
 
   const onRepositoryChange = event => {
@@ -162,15 +164,19 @@ export default function DeployButtonGenerator() {
 
   return (
     <>
-      <Center>
-        <Link href={completeUrl}>
-          <img src="https://vercel.com/button" width={104} height={36} />
-        </Link>
-      </Center>
-      <Caption>
-        An example Deploy Button using the following{' '}
-        <Link href="#snippets">HTML snippet</Link>.
-      </Caption>
+      {isAmp && (
+        <>
+          <Center>
+            <Link href={completeUrl}>
+              <img src="https://vercel.com/button" width={104} height={36} />
+            </Link>
+          </Center>
+          <Caption>
+            An example Deploy Button using the following{' '}
+            <Link href="#snippets">HTML snippet</Link>.
+          </Caption>
+        </>
+      )}
 
       <Heading lean offsetTop={175}>
         <H2>Snippets</H2>
