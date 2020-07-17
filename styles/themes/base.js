@@ -357,4 +357,82 @@ a.geist-secondary-link:hover {
 .geist-spacer.expand {
   flex: 1;
 }
+
+.geist-text {
+  line-height: 1.5;
+}
+
+.geist-text.geist-text-no-margin {
+  margin: 0;
+}
+
+.geist-text.h1 {
+  font-size: 3rem;
+  letter-spacing: -.066875rem;
+  font-weight: 700;
+}
+
+.geist-text.h2 {
+  font-size: 2.25rem;
+  letter-spacing: -.049375rem;
+  font-weight: 600;
+}
+
+.geist-text.h3 {
+  font-size: 1.5rem;
+  letter-spacing: -.029375rem;
+  font-weight: 600;
+}
+
+.geist-text.h4 {
+  font-size: 1.25rem;
+  letter-spacing: -.020625rem;
+  font-weight: 600;
+}
+
+.geist-text.h5 {
+  font-size: 1rem;
+  letter-spacing: -.01125rem;
+  font-weight: 600;
+}
+
+.geist-text.h6 {
+  font-size: .875rem;
+  letter-spacing: -.005625rem;
+  font-weight: 600;
+}
+
+.geist-text.p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.geist-text.body-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.geist-text.body-1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.geist-text.body-2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.geist-text.small {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.geist-text.label {
+  font-size: 12px;
+  font-weight: 600;
+}
 `

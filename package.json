@@ -11,6 +11,7 @@
     "test": "yarn run lint",
     "update-mdx-meta": "node scripts/update-mdx-meta",
     "prettier": "prettier --write \"**/*.{js,json,md,mdx}\"",
+    "lint-code": "(tsc && eslint . && prettier --check '**/*.{js,ts,tsx}' --loglevel warn) || yarn lint:warn",
     "docs-index": "node ./scripts/index-docs.js"
   },
   "dependencies": {
