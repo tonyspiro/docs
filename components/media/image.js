@@ -37,7 +37,9 @@ class Image extends Component {
   }
 
   static defaultProps = {
-    lazy: true
+    lazy: true,
+    width: '100%',
+    height: 0
   }
 
   static propTypes = {
