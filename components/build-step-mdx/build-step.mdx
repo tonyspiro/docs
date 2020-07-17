@@ -192,11 +192,11 @@ To declare an Environment Variable for your deployment, head to the **General** 
 
 First, choose between the following **Environments**:
 
-| Environment     | Description                                                                                                                                                                                           |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Production**  | When selected, the Environment Variable will be applied to your next Production Deployment. To create a Production Deployment, push a commit to the default branch or run `vercel --prod`.            |
-| **Preview**     | The Environment Variable is applied to your next Preview Deployment. Preview Deployments are created when you push to a branch (for example, `my-new-feature`) or run `vercel`.                       |
-| **Development** | The Environment Variable is for use when running your project locally, with `vercel dev` or your preferred development command. To download Development Environment Variables, run `vercel env pull`. |
+| Environment     | Description                                                                                                                                                                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Production**  | When selected, the Environment Variable will be applied to your next Production Deployment. To create a Production Deployment, push a commit to the [Production Branch](/docs/v2/git-integrations#production-branch) or run `vercel --prod`. |
+| **Preview**     | The Environment Variable is applied to your next Preview Deployment. Preview Deployments are created when you push to a branch (for example, `my-new-feature`) or run `vercel`.                                                              |
+| **Development** | The Environment Variable is for use when running your project locally, with `vercel dev` or your preferred development command. To download Development Environment Variables, run `vercel env pull`.                                        |
 
 Enter the **Name** of the Environment Variable. For example, if you are using Node.js and you create an Environment Variable named `SENTRY_KEY`, it will be available under `process.env.SENTRY_KEY` in your code.
 
