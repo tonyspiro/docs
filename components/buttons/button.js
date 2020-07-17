@@ -291,7 +291,7 @@ const ButtonBase = ({
         // we match input height on mobile devices (inputs are higher on mobile)
         @media only screen and (max-device-width: 780px) and (-webkit-min-device-pixel-ratio: 0) {
           button {
-            ${inputSize ? 'height: calc(2 * var(--geist-gap)) !important;' : ''}
+            ${inputSize ? 'height: calc(2 * var(--geist-gap));' : ''}
           }
         }
 
