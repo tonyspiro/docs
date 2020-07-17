@@ -164,7 +164,7 @@ export default function DeployButtonGenerator() {
 
   return (
     <>
-      {isAmp && (
+      {!isAmp && (
         <>
           <Center>
             <Link href={completeUrl}>
