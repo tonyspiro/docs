@@ -25,7 +25,8 @@ const AmpImg = ({
   layout = 'responsive'
 }) => {
   const isAmp = useAmp()
-
+  console.log('amp-img height', height)
+  console.log('amp-img width', width)
   if (isAmp)
     return <amp-img layout={layout} {...{ src, srcSet, height, width, alt }} />
   return children
@@ -83,7 +84,7 @@ class Image extends Component {
     if (video || videoSrc) {
       return <VideoComponent src={videoSrc} {...this.props} />
     }
-
+    console.log('AmpImg', this.props)
     return (
       <AmpImg layout={layout} {...this.props}>
         <IObserver
