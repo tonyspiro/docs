@@ -351,7 +351,7 @@ a.geist-secondary-link:hover {
 }
 
 .geist-spacer.padding {
-  margin: 0 !important;
+  margin: 0;
 }
 
 .geist-spacer.expand {
