@@ -8,6 +8,7 @@ export interface LabelProps {
   children?: React.ReactNode
   withInput?: boolean
   id?: string
+  elId?: string
   style?: CSSProperties
 }
 
