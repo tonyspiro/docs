@@ -1,21 +1,46 @@
-import { memo, useMemo } from 'react'
+import React, { memo, useMemo, useContext, CSSProperties } from 'react'
 import PropTypes from 'prop-types'
+
+interface Options {
+  color?: string
+  secondary?: string
+  size?: string
+  fill?: string
+  viewBox?: string
+}
+
+interface IconProps {
+  size?: number
+  color?: string
+  secondary?: string
+  weight?: 'normal' | 'bold' | 'light'
+  fill?: boolean
+  align?: 'top' | 'bottom' | 'middle'
+  style?: CSSProperties
+}
+
+export const IconSizeContext = React.createContext<number | null>(null)
+export const useIconSize = () => useContext(IconSizeContext)
+IconSizeContext.displayName = 'IconSizeContext'
 
 // Constants (not overridable)
 const cap = 'round'
 const join = 'round'
 
-const withIcon = (icon, iconFill, opts = {}) => {
+const withIcon = (icon: string, iconFill?: boolean, opts: Options = {}) => {
   const {
     color: defaultColor,
     secondary: defaultSecondary,
     size: defaultSize,
-    fill: defaultFill
+    fill: defaultFill,
+    viewBox
   } = opts
 
-  const Icon = props => {
+  const Icon = (props: IconProps) => {
+    const contextSize = useIconSize()
+
     const {
-      size = defaultSize || '24px',
+      size = contextSize || defaultSize || 24,
       color = defaultColor || 'currentColor',
       secondary = defaultSecondary || 'var(--geist-background)',
       weight = 'normal',
@@ -23,11 +48,6 @@ const withIcon = (icon, iconFill, opts = {}) => {
       align,
       ...restProps
     } = props
-
-    delete restProps.fill
-    delete restProps.stroke
-    delete restProps.width
-    delete restProps.height
 
     const strokeWidth = useMemo(() => {
       if (weight === 'bold') {
@@ -37,7 +57,7 @@ const withIcon = (icon, iconFill, opts = {}) => {
       }
 
       return 1.5
-    }, [weight])
+    }, [weight, props.weight])
 
     const verticalAlign = useMemo(() => {
       if (!align) return null
@@ -50,13 +70,13 @@ const withIcon = (icon, iconFill, opts = {}) => {
         return 'middle'
       }
 
-      return null
+      return align
     }, [align])
 
     if (fill && iconFill) {
       return (
         <svg
-          viewBox="0 0 24 24"
+          viewBox={viewBox || '0 0 24 24'}
           width={size}
           height={size}
           stroke="currentColor"
@@ -66,11 +86,11 @@ const withIcon = (icon, iconFill, opts = {}) => {
           shapeRendering="geometricPrecision"
           {...restProps}
           style={{
+            ...restProps.style,
             color,
-            '--geist-fill': 'currentColor',
-            '--geist-stroke': secondary,
-            verticalAlign,
-            ...restProps.style
+            ['--geist-fill' as string]: 'currentColor',
+            ['--geist-stroke' as string]: secondary,
+            verticalAlign: verticalAlign || undefined
           }}
           dangerouslySetInnerHTML={{
             __html: iconFill === true ? icon : iconFill
@@ -81,7 +101,7 @@ const withIcon = (icon, iconFill, opts = {}) => {
 
     return (
       <svg
-        viewBox="0 0 24 24"
+        viewBox={viewBox || '0 0 24 24'}
         width={size}
         height={size}
         stroke="currentColor"
@@ -92,8 +112,9 @@ const withIcon = (icon, iconFill, opts = {}) => {
         shapeRendering="geometricPrecision"
         {...restProps}
         style={{
+          ...restProps.style,
           color,
-          verticalAlign
+          verticalAlign: verticalAlign || undefined
         }}
         dangerouslySetInnerHTML={{
           __html: icon
@@ -111,7 +132,7 @@ const withIcon = (icon, iconFill, opts = {}) => {
   }
 
   const memoIcon = memo(Icon)
-  memoIcon.hasFill = !!iconFill
+  ;(memoIcon as any).hasFill = !!iconFill
 
   return memoIcon
 }

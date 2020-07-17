@@ -30,7 +30,7 @@ export default function DeployBanner({
           margin-bottom: 32px;
         }
 
-        .deploy-banner :global(.note) {
+        .deploy-banner :global(> div) {
           display: flex;
           width: 100%;
           align-items: center;

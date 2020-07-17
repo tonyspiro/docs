@@ -18,12 +18,12 @@ If you want to use a custom workflow that is not catered to by the [Vercel Git I
 
 For multiple environments beyond the provided [Production, Preview, and Development](/docs/v2/build-step#environment-variables), or to map a single repository to multiple projects, skipping the [project linking](/docs/cli#commands/overview/project-linking) step may be required. You can do so by using the following command:
 
-<Snippet dark text="VERCEL_ORG_ID=<value> VERCEL_PROJECT_ID=<value> vercel" />
+<Snippet width="100%"dark text="VERCEL_ORG_ID=<value> VERCEL_PROJECT_ID=<value> vercel" />
 <Caption>Using <InlineCode>VERCEL_ORG_ID</InlineCode> and <InlineCode>VERCEL_PROJECT_ID</InlineCode> system environment variables.</Caption>
 
 Below is an example of a production deployment to a given team with a custom `vercel.json` path:
 
-<Snippet dark text="VERCEL_ORG_ID=<value> VERCEL_PROJECT_ID=<value> vercel --prod --scope <value> -A production.vercel.json" />
+<Snippet width="100%"dark text="VERCEL_ORG_ID=<value> VERCEL_PROJECT_ID=<value> vercel --prod --scope <value> -A production.vercel.json" />
 <Caption>Advanced usage of the Vercel CLI with multiple flags.</Caption>
 
 In the examples above, the following attributes are used:

@@ -53,13 +53,8 @@ class AutoComplete extends Component {
       return
     }
 
-    switch (event.key) {
-      case '/':
-        this.input.focus()
-        break
-      case 'Escape':
-        this.input.blur()
-        break
+    if (event.key == 'Escape') {
+      this.input.blur()
     }
   }
 
@@ -134,7 +129,12 @@ class AutoComplete extends Component {
             </span>
           )}
           <span className="suggestion__content">
-            <Snippet hit={hit} attribute="content" tagName="mark" />
+            <Snippet
+              width="100%"
+              hit={hit}
+              attribute="content"
+              tagName="mark"
+            />
           </span>
         </a>
       </NextLink>
