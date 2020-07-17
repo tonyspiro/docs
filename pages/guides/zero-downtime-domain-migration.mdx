@@ -17,7 +17,7 @@ export const meta = {
   authors: ['mcsdev'],
   url: '/guides/zero-downtime-domain-migration',
   editUrl: 'pages/guides/zero-downtime-domain-migration.mdx',
-  lastEdited: '2020-05-08T23:58:00.000Z'
+  lastEdited: '2020-07-10T15:00:57.000Z'
 }
 
 When migrating to another set of nameservers, there can often be downtime incurred. In this guide we will walk you through adding your domain to <OrgName /> and setting it up before migrating the nameservers, ensuring no downtime at any point.
@@ -133,7 +133,11 @@ When the domain is verified, you can deploy your project to production with <Pro
 
 <Note>
   Your projects will automatically use your custom domain when merging or
-  pushing to the default branch when using either{' '}
+  pushing to the{' '}
+  <Link href="/docs/v2/git-integrations#production-branch">
+    Production Branch
+  </Link>{' '}
+  when using either{' '}
   <Link href="/docs/v2/integrations/vercel-for-gitlab">
     <ProductName /> for GitHub
   </Link>

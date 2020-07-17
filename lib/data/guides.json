@@ -295,7 +295,7 @@
     "image": "https://og-image.now.sh/**Error%20Reports**%20for%20Your%20Projects%20with%20URIports%20and%20Vercel.png?theme=light&md=1&fontSize=90px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fzeit-black-triangle.svg&images=https%3A%2F%2Fzeit.co%2Fdocs%2Fstatic%2Fguides%2Fclient-side-error-reports-with-uriports-vercel%2Flogo.svg",
     "url": "/guides/client-side-error-reports-with-uriports-vercel",
     "editUrl": "pages/guides/client-side-error-reports-with-uriports-vercel.mdx",
-    "lastEdited": "2020-05-27T11:30:01.000Z"
+    "lastEdited": "2020-07-10T15:00:57.000Z"
   },
   {
     "title": "Monitor Performance with Calibre and Vercel",
@@ -305,7 +305,7 @@
     "url": "/guides/monitoring-performance-with-calibre-and-vercel",
     "image": "https://og-image.now.sh/**Performance%20Monitoring**%20for%20Vercel%20Deployments%20with%20Calibre.png?theme=light&md=1&fontSize=88px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fzeit-black-triangle.svg&images=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1103494136768847873%2FM6AGVCx4_400x400.png",
     "editUrl": "pages/guides/monitoring-performance-with-calibre-and-vercel.mdx",
-    "lastEdited": "2020-04-25T00:32:18.000Z"
+    "lastEdited": "2020-07-13T16:43:56.000Z"
   },
   {
     "title": "Create and Deploy Vue.js Forms using Formcarry with Vercel",
@@ -582,7 +582,7 @@
     "authors": ["mcsdev"],
     "url": "/guides/zero-downtime-domain-migration",
     "editUrl": "pages/guides/zero-downtime-domain-migration.mdx",
-    "lastEdited": "2020-05-08T23:58:00.000Z"
+    "lastEdited": "2020-07-10T15:00:57.000Z"
   },
   {
     "title": "Create and Deploy a Next.js and Prismic App with Vercel",
@@ -676,7 +676,7 @@
     "authors": ["arunoda", "timothy"],
     "url": "/guides/getting-started-with-vercel-for-gitlab",
     "editUrl": "pages/guides/getting-started-with-vercel-for-gitlab.mdx",
-    "lastEdited": "2020-04-16T03:34:45.000Z"
+    "lastEdited": "2020-07-10T15:00:57.000Z"
   },
   {
     "title": "How to Update Vercel CLI",
