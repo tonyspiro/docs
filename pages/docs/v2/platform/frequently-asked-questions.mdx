@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-13T21:53:55.000Z'
+  lastEdited: '2020-07-20T13:10:29.000Z'
 }
 
 ## Platform Version Detection
@@ -232,11 +232,12 @@ The [`functions`](/docs/configuration#project/functions) property uses a glob pa
 
 If you are using Next.js, Serverless Functions source files can be created in the following:
 
-- `api` directory
 - `pages/api` directory
 - `src/pages/api` directory
 - `pages` directory when the module exports [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)
 - `src/pages` directory when the module exports [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)
+
+Additionally, if you'd like to use a Serverless Function that isn't written with Node.js in combination with Next.js, you can place it in the `api` directory (provided by the platform), since `pages/api` (provided by Next.js) only supports JavaScript.
 
 **Not Allowed**
 
