@@ -5,16 +5,16 @@ const VERCEL_EXAMPLES_URL = 'github.com/vercel/vercel/tree/master/examples/'
 
 export default function DeployButton({ env, envDescription, envLink, url }) {
   const formatEnv = () => {
-    const envListFormatted = env && env.toString()
+    const envListFormatted = env ? `&env=${env.toString()}` : ''
     const envDescriptionFormatted = envDescription
       ? `&envDescription=${envDescription}`
       : ''
     const envLinkFormatted = envLink ? `&envLink=${envLink}` : ''
 
     const envString =
-      envLinkFormatted + envDescriptionFormatted + envListFormatted
+      envListFormatted + envDescriptionFormatted + envLinkFormatted
 
-    return envString
+    return envString !== 'undefined' ? envString : ''
   }
 
   const deployUrl = url.includes(VERCEL_EXAMPLES_URL)
