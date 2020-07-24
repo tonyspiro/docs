@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-20T13:10:29.000Z'
+  lastEdited: '2020-07-24T14:16:01.000Z'
 }
 
 ## Platform Version Detection
@@ -294,3 +294,21 @@ On Windows:
 ### Project Name Validation
 
 Project names can only consist of up to 100 alphanumeric lowercase characters. Hyphens can be used in between the name, but never at the start or end.
+
+## Bypassing Password Protection Programmatically
+
+When [Password Protection](/docs/v2/platform/projects#password-protection) is enabled on your Projects,
+you can bypass the protection programmatically with the following steps:
+
+- Send a `POST` request to your Deployment with the password in the request body `_vercel_password=<password>`.
+- Parse the `Set-Cookie` response header and extract the cookie `_vercel_jwt` from the response.
+- Set the cookie to the `Cookie` request header when you access the Deployment
+
+**Example Request**
+
+```shell
+cookie="$(curl -s -D - -o /dev/null -X POST -d "_vercel_password=<password>" https://example.vercel.app | grep -i Set-Cookie | grep _vercel_jwt | awk {'print $2'})"
+curl -H "Cookie: $cookie" https://example.vercel.app
+```
+
+This steps are required per url and cookie values cannot be shared among Deployments.
