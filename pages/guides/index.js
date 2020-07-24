@@ -32,7 +32,7 @@ const Guides = () => (
               <article className="guide">
                 <div className="titles">
                   <H3>{guide.title}</H3>
-                  <P>{guide.description}</P>
+                  <P style={{ color: '#444' }}>{guide.description}</P>
                 </div>
                 <div className="meta">
                   <span className="date">
@@ -133,6 +133,7 @@ const Guides = () => (
         justify-content: space-between;
         padding: 24px 0;
         position: relative;
+        color: #000;
       }
 
       .guide :global(h3) {

@@ -166,7 +166,7 @@ That's all the setup required for [DatoCMS](https://www.datocms.com/)! Within on
 
 To display your new blog and content, create a new [Next.js](https://nextjs.org/) application using [create-next-app](https://create-react-app.dev/), then run the following command and follow the wizard:
 
-<Snippet dark text="npm init next-app my-datocms-project" />
+<Snippet width="100%"dark text="npm init next-app my-datocms-project" />
 <Caption>Bootstrap a Next.js application from your command line.</Caption>
 
 Enter inside the project directory, install the [graphql-request](https://github.com/prisma-labs/graphql-request) and [react-datocms](https://github.com/datocms/react-datocms) package, and start the development server:
@@ -203,7 +203,7 @@ export function request({ query, variables, preview }) {
 
 Then, you can set the environment variable inside a `.env.local` file:
 
-<Snippet dark text="echo 'DATOCMS_API_TOKEN=YOUR-API-TOKEN' >> .env.local" />
+<Snippet width="100%" dark text="echo 'DATOCMS_API_TOKEN=YOUR-API-TOKEN' >> .env.local" />
 <Caption>Creating an environment variable in a <InlineCode>.env.local</InlineCode> file for your API token.</Caption>
 
 <Note>

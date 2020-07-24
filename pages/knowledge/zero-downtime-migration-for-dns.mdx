@@ -20,7 +20,7 @@ Migrating your DNS configuration to another provider can require a few steps. Th
 
 To locate the current DNS provider of your domain, you can run the following command:
 
-<Snippet dark text="dig NS example.com +short" />
+<Snippet width="100%"dark text="dig NS example.com +short" />
 <Caption>Checking the DNS authority for a domain using the terminal.</Caption>
 
 The result will show the current DNS authority. You will need to explore the DNS provider dashboard to locate the records. If you are using Vercel, the DNS configuration can be located [here](https://vercel.com/dashboard/domains).
@@ -31,12 +31,12 @@ After you have successfully located all records associated with your domain, you
 
 To verify the records, you can query the DNS configuration served by the future DNS authority:
 
-<Snippet dark text="dig A api.example.com +short @ns1.vercel-dns.com" />
+<Snippet width="100%"dark text="dig A api.example.com +short @ns1.vercel-dns.com" />
 <Caption>Checking the DNS configuration of the A record under "api" served by Vercel.</Caption>
 
 If you were moving your DNS to Cloudflare, for example, the correct command would be:
 
-<Snippet dark text="dig A api.example.com +short @1.1.1.1" />
+<Snippet width="100%"dark text="dig A api.example.com +short @1.1.1.1" />
 <Caption>Checking the DNS configuration of the A record under "api" served by Cloudflare.</Caption>
 
 Before proceeding, it is recommended that you check every record that you have moved away from. Dropping the `+short` flag can also give you more insight into the DNS resolution.
