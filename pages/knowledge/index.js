@@ -47,7 +47,7 @@ const Knowledge = () => (
               <article className="guide">
                 <div className="titles">
                   <H3>{k.title}</H3>
-                  <P>{k.description}</P>
+                  <P style={{ color: '#444' }}>{k.description}</P>
                 </div>
                 <div className="meta">
                   <span className="date">
@@ -128,6 +128,7 @@ const Knowledge = () => (
         justify-content: space-between;
         padding: 24px 0;
         position: relative;
+        color: #000;
       }
 
       .guide :global(h3) {
