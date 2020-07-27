@@ -297,12 +297,12 @@ Project names can only consist of up to 100 alphanumeric lowercase characters. H
 
 ## Bypassing Password Protection Programmatically
 
-When [Password Protection](/docs/v2/platform/projects#password-protection) is enabled on your Projects,
+When [Password Protection](/docs/v2/platform/projects#password-protection) is enabled on your Project,
 you can bypass the protection programmatically with the following steps:
 
-- Send a `POST` request to your Deployment with the password in the request body `_vercel_password=<password>`.
+- Send a `POST` request to your Deployment with the password in the request body (`_vercel_password=<password>`).
 - Parse the `Set-Cookie` response header and extract the cookie `_vercel_jwt` from the response.
-- Set the cookie to the `Cookie` request header when you access the Deployment
+- Set the cookie to the `Cookie` request header when you access the Deployment.
 
 **Example Request**
 
@@ -311,4 +311,4 @@ cookie="$(curl -s -D - -o /dev/null -X POST -d "_vercel_password=<password>" htt
 curl -H "Cookie: $cookie" https://example.vercel.app
 ```
 
-This steps are required per url and cookie values cannot be shared among Deployments.
+These steps are required for every URL and cookie values cannot be shared across Deployments.
