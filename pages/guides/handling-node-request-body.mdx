@@ -39,7 +39,7 @@ To illustrate the parsing of a request body, create an `index.js` file inside yo
 ```js
 module.exports = async (req, res) => {
   const { body } = req
-  res.end(`Hello ${body.name}, you just parsed the request body!`)
+  res.send(`Hello ${body.name}, you just parsed the request body!`)
 }
 ```
 
