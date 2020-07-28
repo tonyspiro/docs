@@ -47,7 +47,11 @@ const Knowledge = ({ posts }) => (
       <Wrapper>
         <div className="knowledge-list">
           {posts.map((post, i) => (
-            <Link href={`/knowledge/${post.slug}`} key={`${post.slug}.${i}`}>
+            <Link
+              href="/knowledge/[slug]"
+              as={`/knowledge/${post.slug}`}
+              key={`${post.slug}.${i}`}
+            >
               <article className="post">
                 <div className="titles">
                   <H3>{post.title}</H3>
