@@ -31,6 +31,11 @@ html {
   --geist-gap-quarter: var(--geist-space-gap-quarter);
   --geist-gap-double: var(--geist-space-large);
 
+  /* Page values */
+  --geist-page-margin: var(--geist-space-gap);
+  --geist-page-width: 1000px;
+  --geist-page-width-with-margin: 1048px;
+
   /* Negative values */
   --geist-space-negative: -4px;
   --geist-space-2x-negative: -8px;

@@ -69,6 +69,7 @@
     "remark-rehype": "7.0.0",
     "remark-stringify": "6.0.4",
     "scroll-into-view-if-needed": "1.1.0",
+    "swr": "0.3.0-beta.10",
     "title": "3.4.2",
     "to-vfile": "5.0.2",
     "unified": "9.0.0",
