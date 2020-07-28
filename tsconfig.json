@@ -36,5 +36,6 @@
       "@swr/*": ["swr/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js"]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
+  "exclude": ["node_modules"]
 }
