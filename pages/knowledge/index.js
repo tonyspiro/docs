@@ -224,7 +224,7 @@ export async function getStaticProps() {
     },
     body: JSON.stringify({
       query: `{
-        allKnowledgeBases(orderBy: _publishedAt_DESC) {
+        allKnowledgeBases(first: 100, orderBy: _publishedAt_DESC) {
           title
           slug
           description
