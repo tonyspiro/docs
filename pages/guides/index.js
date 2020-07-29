@@ -7,6 +7,7 @@ import { AvatarGroup } from '~/components/avatar'
 import Link from '~/components/text/link'
 import guides from '~/lib/data/guides.json'
 import { PRODUCT_NAME } from '~/lib/constants'
+import Footer from '~/components/footer'
 
 const Guides = () => (
   <>
@@ -66,6 +67,7 @@ const Guides = () => (
           </Link>
         </div>
       </Wrapper>
+      <Footer />
     </div>
 
     <style jsx>{`
