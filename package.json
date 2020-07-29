@@ -46,7 +46,7 @@
     "nprogress": "0.2.0",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-hover-media-feature": "0.2.1",
-    "postcss-nested": "4.2.2",
+    "postcss-nested": "4.2.3",
     "postcss-preset-env": "6.7.0",
     "prop-types": "15.6.2",
     "qs": "6.6.0",
