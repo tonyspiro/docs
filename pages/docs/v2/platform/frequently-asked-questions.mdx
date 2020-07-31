@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-31T07:22:08.000Z',
+  lastEdited: '2020-07-31T10:44:41.000Z'
 }
 
 ## Platform Version Detection
@@ -293,7 +293,7 @@ On Windows:
 
 <Snippet text={['rmdir /s /q .vercel', 'vercel']} dark />
 
-### Project Name Validation
+## Project Name Validation
 
 Project names can only consist of up to 100 alphanumeric lowercase characters. Hyphens can be used in between the name, but never at the start or end.
 
@@ -314,6 +314,12 @@ curl -H "Cookie: $cookie" https://example.vercel.app
 ```
 
 These steps are required for every URL and cookie values cannot be shared across Deployments.
+
+## Domain Verification via CLI
+
+It is no longer required to manually verify domains via TXT records anymore.
+
+Instead, a domain's DNS settings must be configured after the domain is added to a Project. See the <Link href="/docs/v2/custom-domains#step-4:-configuring-the-domain">Custom Domains</Link> section for more information.
 
 ## Leaving The Team
 
