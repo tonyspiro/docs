@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-24T14:16:01.000Z'
+  lastEdited: '2020-07-31T07:22:08.000Z',
 }
 
 ## Platform Version Detection
@@ -32,7 +32,8 @@ If you are yet to upgrade to the latest platform version, please read our [upgra
 
 ## Green Energy Policy
 
-<OrgName /> works with multiple cloud partners in order to provide services to end users.
+<OrgName /> works with multiple cloud partners in order to provide services to
+end users.
 
 The Serverless approach is an energy-efficient alternative to traditional servers because your code runs only on-demand.
 
@@ -44,7 +45,8 @@ For more information on our cloud partners' Green energy policies, we recommend 
 
 ## What can I deploy with <NameWrapper name={PRODUCT_NAME} />?
 
-<ProductName /> is best at deploying technologies that can be served over HTTP and distributed through our CDN network:
+<ProductName /> is best at deploying technologies that can be served over HTTP
+and distributed through our CDN network:
 
 - Static websites and static generators ([Next.js](/guides/deploying-nextjs-with-now), React, Vue, Angular, etc)
 - Code that renders HTML on the server-side
@@ -55,7 +57,7 @@ In general, most popular technologies and languages already have [quickstarts](/
 export default ({ children }) => <Doc meta={meta}>{children}</Doc>
 
 export const config = {
-  amp: 'hybrid'
+  amp: 'hybrid',
 }
 
 ## Missing Public Directory
@@ -312,3 +314,9 @@ curl -H "Cookie: $cookie" https://example.vercel.app
 ```
 
 These steps are required for every URL and cookie values cannot be shared across Deployments.
+
+## Leaving The Team
+
+You cannot leave a team if you are the last remaining owner of the team or the last confirmed member. In order to leave the team, you first have to designate another confirmed member as an owner of the team.
+
+If you are the only remaining member, you should delete the team instead.
