@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/v2/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-07-31T10:44:41.000Z'
+  lastEdited: '2020-08-03T15:21:30.000Z',
 }
 
 ## Platform Version Detection
@@ -296,6 +296,14 @@ On Windows:
 ## Project Name Validation
 
 Project names can only consist of up to 100 alphanumeric lowercase characters. Hyphens can be used in between the name, but never at the start or end.
+
+## Repository Connection Limitation
+
+A Git Repository cannot be connected to more than 20 Projects on Vercel (not including deleted Projects) so that Pull Requests will have a reasonable number of comments and deployments.
+
+If you have reached the limitation and would like to connect a new Project to the repository, you will need to disconnect an existing Project from the same repository.
+
+If you would like to increase this limit, please [contact Vercel Support](/support/request).
 
 ## Bypassing Password Protection Programmatically
 
