@@ -18,71 +18,35 @@ const RemarkNote = ({
   return (
     <div className={cn('note', className, { small, fill, center })} {...props}>
       {label !== false && (
-        <section className="label">
-          <Text bold span uppercase>
-            {(label && `${label}: `) ||
-              (type === 'success' && `Success: `) ||
-              (type === 'error' && `Error: `) ||
-              (type === 'warning' && `Warning: `) ||
-              `Note: `}
-          </Text>
-        </section>
+        <Text bold span uppercase>
+          {(label && `${label}: `) ||
+            (type === 'success' && `Success: `) ||
+            (type === 'error' && `Error: `) ||
+            (type === 'warning' && `Warning: `) ||
+            `Note: `}
+        </Text>
       )}
 
-      <section className="content">{children}</section>
+      {children}
 
       <style jsx>{`
         .note {
-          background: var(--themed-bg);
-
-          font-size: 16px;
-          line-height: 1.8;
-          color: var(--themed-fg);
+          padding: var(--geist-gap-half) var(--geist-gap);
           border-radius: var(--geist-radius);
-          margin-top: 1.5rem;
-          margin-bottom: 1.5rem;
+          color: var(--themed-fg);
+          background: var(--themed-bg);
+          border: 1px solid var(--themed-border, var(--accents-2));
+          font-size: 14px;
+          line-height: 1.8;
         }
 
-        .note .label {
-          background: var(--themed-fg);
-          color: var(--themed-bg);
-          font-size: 0.85rem;
-          border-radius: var(--geist-radius) var(--geist-radius) 0 0;
-
-          padding: ${small
-            ? 'var(--geist-gap-quarter) var(--geist-gap-half)'
-            : 'var(--geist-gap-half) var(--geist-gap)'};
-
-          padding-top: 0.3rem;
-          padding-bottom: 0.2rem;
+        .note.fill {
+          color: var(--themed-fg, var(--geist-background));
+          background: var(--themed-bg, var(--geist-foreground));
+          border: 1px solid var(--themed-border, var(--geist-foreground));
         }
 
-        .note .content {
-          padding: ${small
-            ? 'var(--geist-gap-quarter) var(--geist-gap-half)'
-            : 'var(--geist-gap-half) var(--geist-gap)'};
-
-          border: 1px solid var(--themed-border);
-          border-top: 0;
-        }
-
-        .note:not(.geist-themed) {
-          --themed-border: var(--accents-2);
-        }
-
-        .note.fill:not(.geist-themed) {
-          --themed-bg: var(--geist-foreground);
-          --themed-fg: var(--geist-background);
-          --themed-border: var(--geist-foreground);
-        }
-
-        .note__type {
-          text-transform: uppercase;
-          font-weight: 500;
-        }
-
-        .note.small .content,
-        .note.small .label {
+        .note.small {
           padding: 5px var(--geist-gap-half);
         }
 
@@ -104,9 +68,9 @@ RemarkNote.propTypes = {
     'error',
     'warning',
     'default',
-    'lite'
+    'lite',
   ]),
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 }
 
 export default withType(RemarkNote)
