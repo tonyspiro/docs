@@ -82,7 +82,7 @@ const Foot = ({ light }: FooterProps) => {
       <FooterGroup title="Resources">
         <FooterLink href="/docs">Documentation</FooterLink>
         <FooterLink href="/guides">Guides</FooterLink>
-        <FooterLink href="/knowledge">Knowledge</FooterLink>
+        <FooterLink href="/knowledge/" as="/knowledge">Knowledge</FooterLink>
         <FooterLink href="/blog">Blog</FooterLink>
         <FooterLink href="/api">API Reference</FooterLink>
         <FooterLink href="/examples">Examples</FooterLink>
