@@ -53,6 +53,11 @@ const RemarkNote = ({
         .note.center {
           text-align: center;
         }
+
+        .note > :global(div:first-of-type),
+        .note > :global(div:first-of-type > p:first-child) {
+          display: inline;
+        }
       `}</style>
     </div>
   )
