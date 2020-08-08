@@ -74,7 +74,7 @@ const Foot = ({ light }: FooterProps) => {
         <FooterLink href="/bitbucket">Vercel for Bitbucket</FooterLink>
         <FooterLink href="/integrations">Integrations</FooterLink>
         <FooterLink href="/download">Command-Line</FooterLink>
-        <FooterLink href="/docs/v2/edge-network/overview">
+        <FooterLink href="/docs/edge-network/overview">
           Edge Network
         </FooterLink>
       </FooterGroup>

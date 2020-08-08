@@ -125,7 +125,7 @@
     "authors": ["mcsdev", "timothy", "skllcrn"],
     "url": "/guides/upgrade-to-zero-configuration",
     "editUrl": "pages/guides/upgrade-to-zero-configuration.mdx",
-    "lastEdited": "2020-07-02T06:29:55.000Z",
+    "lastEdited": "2020-08-04T23:22:45.000Z",
     "rank": 16
   },
   {
@@ -756,7 +756,7 @@
     "authors": ["unicodeveloper", "mcsdev"],
     "url": "/guides/prevent-uploading-sourcepaths-with-vercelignore",
     "editUrl": "pages/guides/prevent-uploading-sourcepaths-with-vercelignore.mdx",
-    "lastEdited": "2020-05-14T22:27:16.000Z"
+    "lastEdited": "2020-08-04T23:22:45.000Z"
   },
   {
     "title": "Deploying with Custom Serverless Next.js Routing",
