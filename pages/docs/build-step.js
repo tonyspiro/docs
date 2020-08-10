@@ -11,7 +11,7 @@ export const meta = {
   lastEdited: '2020-03-17T21:39:09.000Z',
 }
 
-export default ({ frameworks }) => (
+const BuildStepComponent = ({ frameworks }) => (
   <Doc meta={meta}>
     <BuildStep
       frameworks={
@@ -34,6 +34,8 @@ export default ({ frameworks }) => (
     />
   </Doc>
 )
+
+export default BuildStepComponent
 
 export async function getStaticProps() {
   const frameworks = (await fetchAPI(API_FRAMEWORKS)) || []
