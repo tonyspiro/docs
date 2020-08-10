@@ -325,9 +325,11 @@ These steps are required for every URL and cookie values cannot be shared across
 
 ## Domain Verification via CLI
 
-It is no longer required to manually verify domains via TXT records anymore.
+It is no longer necessary to verify your ownership of a Domain using the `vercel domains verify` command in Vercel CLI anymore.
 
-Instead, a domain's DNS settings must be configured after the domain is added to a Project. See the <Link href="/docs/v2/custom-domains#step-4:-configuring-the-domain">Custom Domains</Link> section for more information.
+Instead, it's now only necessary for you to point the Domain to Vercel by configuring our nameservers or a DNS Record. You can learn more about what to do exactly for your Domain by running `vercel domains inspect <domain>`, where `<domain>` is the Domain you're interested in.
+
+Alternatively, if you already added it to a Project, read <Link href="/docs/v2/custom-domains#step-4:-configuring-the-domain">this section</Link>.
 
 ## Leaving The Team
 
