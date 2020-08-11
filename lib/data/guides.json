@@ -1,5 +1,18 @@
 [
   {
+    "title": "Using SendGrid with Vercel",
+    "description": "Send Emails from a domain on Vercel",
+    "name": "SendGrid",
+    "type": "app",
+    "published": "2020-08-02T01:01:52.000Z",
+    "authors": ["samrobbins"],
+    "url": "/guides/use-sendgrid-with-vercel",
+    "image": "https://og-image.now.sh/**Using%20Sendgrid%20with%20Vercel**.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fraw.githubusercontent.com%2Fdetain%2Fsvg-logos%2Fmaster%2Fsvg%2Fsendgrid-1.svg",
+    "editUrl": "pages/guides/use-sendgrid-with-vercel.mdx",
+    "lastEdited": "2020-08-02T05:49:23.000Z",
+    "rank": 3
+  },
+  {
     "title": "Deploying a Static Nuxt.js App with Vercel",
     "description": "Create and deploy your static Nuxt.js app with Vercel.",
     "name": "Nuxt.js",

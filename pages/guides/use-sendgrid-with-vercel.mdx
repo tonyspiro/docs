@@ -1,0 +1,75 @@
+import Guide from '~/components/layout/guide'
+import Snippet from '~/components/snippet'
+import Caption from '~/components/text/caption'
+import { Image } from '~/components/media'
+import Note from '~/components/text/note'
+import { InlineCode } from '~/components/text/code'
+
+export const meta = {
+  title: 'Using SendGrid with Vercel',
+  description: 'Send Emails from a domain on Vercel',
+  name: 'SendGrid',
+  type: 'app',
+  published: '2020-08-02T01:01:52.000Z',
+  authors: ['samrobbins'],
+  url: '/guides/use-sendgrid-with-vercel',
+  image:
+    'https://og-image.now.sh/**Using%20Sendgrid%20with%20Vercel**.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fraw.githubusercontent.com%2Fdetain%2Fsvg-logos%2Fmaster%2Fsvg%2Fsendgrid-1.svg',
+  editUrl: 'pages/guides/use-sendgrid-with-vercel.mdx',
+  lastEdited: '2020-08-02T05:49:23.000Z',
+  rank: 3,
+}
+
+SendGrid is the world's largest cloud-based email delivery platform.
+
+In this guide, you will learn how to set up a domain transfered to Vercel with [SendGrid](https://sendgrid.com/).
+
+If your domain is not yet transferred to Vercel, you can follow the guide [Transferring Domains to Vercel](/guides/transferring-domains-to-vercel).
+
+## Step 1 : Sign up to SendGrid
+
+Before starting, you need to [sign up for a SendGrid account](https://signup.sendgrid.com/), a free account will let you send 100 emails per day forever and there are paid plans for increased usage.
+
+## Step 2 : Begin the process of authenticating a domain in SendGrid
+
+1. Go to your SendGrid dashboard
+2. In the sidebar open the **settings** section
+3. Select **Sender Authentication**
+4. Click **Authenticate Your Domain** under **Domain Authentication**
+
+You will then be prompted which DNS host you use, scroll to the bottom and select **Other Host (Not Listed)** and type Vercel in the box that appears
+
+It is your choice if you want to brand the links for the domain, this guide will work either way.
+
+Clicking next will prompt you to choose the domain you send from, put your chosen domain in here.
+
+You will then see a list of DNS records you need to add.
+
+## Step 3: Adding the DNS Records in Vercel
+
+To to your Vercel dashboard and select the **Domains** tab, from here, select the domain you are adding to SendGrid.
+
+You will then be taken to a page with the section shown below to add DNS records.
+
+<Image
+  src={`${process.env.ASSETS}/guides/use-sendgrid-with-vercel/dns_record.png`}
+  width={1144 / 2}
+  oversize
+  borderRadius
+  shadow
+/>
+<Caption>Section for adding a DNS record.</Caption>
+
+<Note>
+  Ensure that you select <InlineCode>CNAME</InlineCode> as the type for all the
+  records you insert.
+</Note>
+
+For each record in SendGrid enter the subdomain of the `HOST` provided as the `NAME` in Vercel.
+For example, if the `HOST` field is `s1._domainkey.vercel.com`, you should only enter `s1.domainkey` in the `NAME` field in Vercel.
+
+The `VALUE` field in SendGrid can be copied directly into the `VALUE` field in Vercel.
+
+Click **Verify** in SendGrid and you should see all the records verified.
+
+export default ({ children }) => <Guide meta={meta}>{children}</Guide>
