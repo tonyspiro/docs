@@ -611,9 +611,10 @@
     "published": "2019-06-24T16:51:04.000Z",
     "authors": ["mcsdev"],
     "url": "/guides/deploying-next-and-storyblok-with-vercel",
-    "image": "https://vercel.com/docs/static/guides/deploying-next-storyblok-with-vercel/deploying-next-storyblok-with-vercel.png",
+    "env": ["STORYBLOK_API_TOKEN"],
+    "image": "https://og-image.now.sh/**Storyblok-backed%20Next.js%20apps**%20with%20Vercel.png?theme=light&md=1&fontSize=90px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fres-5.cloudinary.com%2Fcrunchbase-production%2Fimage%2Fupload%2Fc_lpad%2Cf_auto%2Cq_auto%3Aeco%2Fcigoteabm6kplqug2ovn",
     "editUrl": "pages/guides/deploying-next-and-storyblok-with-vercel.mdx",
-    "lastEdited": "2020-07-17T05:49:23.000Z"
+    "lastEdited": "2020-07-22T12:53:01.000Z"
   },
   {
     "title": "Create a Next.js and ButterCMS App That Builds and Deploys with Vercel",
