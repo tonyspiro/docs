@@ -8,7 +8,7 @@ const Index = () => (
     title={`${PRODUCT_NAME} Integrations Documentation`}
     description={`A comprehensive guide to creating and using the ${PRODUCT_NAME} Integrations API and gaining control over the ${PRODUCT_NAME} platform.`}
     defaultActiveCategory="introduction"
-    defaultActiveSection="zeit-integrations"
+    defaultActiveSection="vercel-integrations"
   />
 )
 
