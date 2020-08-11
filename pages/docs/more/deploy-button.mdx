@@ -18,8 +18,10 @@ export const meta = {
   title: 'Deploy Button',
   description: `Learn how to integrate with Vercel's flow for deploying Git repositories.`,
   editUrl: 'pages/docs/more/deploy-button.mdx',
-  lastEdited: '2020-08-04T21:21:17.000Z',
-  image: `https://vercel.com${process.env.ASSETS}/docs/more/deploy-button/deploy-button.png`,
+  lastEdited: '2020-08-11T20:50:52.000Z',
+  image: `https://vercel.com${
+    process.env.ASSETS
+  }/docs/more/deploy-button/deploy-button.png`
 }
 
 Deploy public Git projects with the Deploy Button, providing an easy-to-use flow to set up new projects with <OrgName /> and GitHub, GitLab, or Bitbucket.
@@ -74,12 +76,12 @@ The Repository URL parameter allows you to define a Git repository URL, optional
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
       https://vercel.com/import/git?
       <b style={{ color: 'var(--geist-background)' }}>
-        s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world
+        s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world
       </b>
     </span>
   }
@@ -106,10 +108,10 @@ The Required Environment Variables parameter allows you to require users to fill
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY,API_SECRET_KEY"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY,API_SECRET_KEY"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>env=PUBLIC_API_KEY,API_SECRET_KEY</b>
     </span>
   }
@@ -152,10 +154,10 @@ The Environment Variables Description parameter allows you to define a URL encod
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key."
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key."
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;
       <b style={{ color: 'var(--geist-background)' }}>envDescription=Enter%20your%20public%20API%20Key.</b>
     </span>
   }
@@ -194,10 +196,10 @@ The Environment Variable Link parameter allows you to attach a link to external 
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key.&envLink=https%3A%2F%2Fvercel.com%2Fdocs"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key.&envLink=https%3A%2F%2Fvercel.com%2Fdocs"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;envDescription=Enter%20your%20public%20API%20Key.&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;envDescription=Enter%20your%20public%20API%20Key.&amp;
       <b style={{ color: 'var(--geist-background)' }}>envLink=https%3A%2F%2Fvercel.com%2Fdocs</b>
     </span>
   }
@@ -236,10 +238,10 @@ This parameter is helpful if you are sending a user from an application, to depl
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=my-headless-application.com"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=my-headless-application.com"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>redirect-url=my-headless-application.com</b>
     </span>
   }
@@ -297,10 +299,10 @@ You can find the Developer ID listed as "Client ID" in your [Integrations Develo
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&developer-id=oac_7rUTiCMow23Gyfao9RQQ3Es2"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&developer-id=oac_7rUTiCMow23Gyfao9RQQ3Es2"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
       <b style={{ color: 'var(--geist-background)' }}>developer-id=oac_7rUTiCMow23Gyfao9RQQ3Es2</b>
     </span>
   }
@@ -334,10 +336,10 @@ When redirected back to your application upon a successful deployment for the us
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&production-deploy-hook=MyHeadlessProject"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&production-deploy-hook=MyHeadlessProject"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
       <b style={{ color: 'var(--geist-background)' }}>production-deploy-hook=MyHeadlessProject</b>
     </span>
   }
@@ -368,10 +370,10 @@ This parameter is useful for cases where already know what the user would like t
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&project-name=my-awesome-project"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&project-name=my-awesome-project"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>project-name=my-awesome-project</b>
     </span>
   }
@@ -394,10 +396,10 @@ Similar to the [Project Name](#project-name) parameter, this parameter is useful
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&repository-name=my-awesome-project"
+  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&repository-name=my-awesome-project"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>repository-name=my-awesome-project</b>
     </span>
   }
@@ -410,5 +412,5 @@ Similar to the [Project Name](#project-name) parameter, this parameter is useful
 export default ({ children }) => <Doc meta={meta}>{children}</Doc>
 
 export const config = {
-  amp: 'hybrid',
+  amp: 'hybrid'
 }
