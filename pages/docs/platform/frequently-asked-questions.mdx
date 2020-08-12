@@ -6,7 +6,7 @@ import { InlineCode } from '~/components/text/code'
 import ProductName from '~/components/name/product-name'
 import OrgName from '~/components/name/org-name'
 import NameWrapper from '~/components/name/name-wrapper'
-import { PRODUCT_NAME } from '~/lib/constants'
+import { PRODUCT_NAME, DEPLOYMENT_SUFFIX } from '~/lib/constants'
 import ProductShortName from '~/components/name/product-short-name'
 import Snippet from '~/components/snippet'
 
@@ -97,7 +97,7 @@ Once you have defined the `build` [script](https://docs.npmjs.com/misc/scripts),
 
 ## Broken Preview Deployment Suffix
 
-The Preview Deployment Suffix feature (available optionally on the "General" team settings page) allows for replacing the `now.sh` suffix of every freshly created deployment with a custom domain of your choice.
+The Preview Deployment Suffix feature (available optionally on the "General" team settings page) allows for replacing the <InlineCode><NameWrapper name={DEPLOYMENT_SUFFIX}/></InlineCode> suffix of every freshly created deployment with a custom domain of your choice.
 
 In order for this feature to function properly, the custom domain you configured must be:
 
