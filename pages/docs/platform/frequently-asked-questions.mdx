@@ -220,6 +220,10 @@ For most cases, it is recommended to use the `functions` property because it sup
 
 However, the [`builds`](/docs/configuration#project/builds) property will remain supported for backwards compatibility purposes.
 
+## Unsupported Functions Configuration with Next.js
+
+When using Next.js, only `memory` and `maxDuration` can be used to configure functions. Next.js handles the other configuration values for you.
+
 ## Deploying Serverless Functions to Multiple Regions
 
 It's possible to deploy Serverless Functions to multiple regions, but it's restricted to the [Enterprise plan](/pricing) for Teams.

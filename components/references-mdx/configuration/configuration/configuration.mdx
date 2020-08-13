@@ -217,6 +217,10 @@ A [glob](https://github.com/isaacs/node-glob#glob-primer) pattern that matches t
 - `includeFiles` (optional): A [glob](https://github.com/isaacs/node-glob#glob-primer) pattern to match files that should be included in your Serverless Function. If you’re using a Community Runtime, the behavior might vary. Please consult its documentation for more details.
 - `excludeFiles` (optional): A [glob](https://github.com/isaacs/node-glob#glob-primer) pattern to match files that should be excluded from your Serverless Function. If you’re using a Community Runtime, the behavior might vary. Please consult its documentation for more details.
 
+<Note type="warning">
+  When using Next.js, only <InlineCode>memory</InlineCode> and <InlineCode>maxDuration</InlineCode> can be used.
+</Note>
+
 **Description:**
 
 By default, no configuration is needed to deploy Serverless Functions to <ProductName />.
