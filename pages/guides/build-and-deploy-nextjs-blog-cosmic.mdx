@@ -1,0 +1,354 @@
+import Guide from '~/components/layout/guide'
+import Snippet from '~/components/snippet'
+import { InlineCode } from '~/components/text/code'
+import { Image } from '~/components/media'
+import Caption from '~/components/text/caption'
+import Note from '~/components/text/note'
+import Link from '~/components/text/link'
+import DeploySection from '~/components/guides/deploy-section'
+
+export const meta = {
+  title: 'Build and Deploy a Next.js Blog with Cosmic and Vercel',
+  description:
+    'This guide will help you deploy a highly-performant static Next.js blog with Cosmic and Vercel in minutes.',
+  published: '2020-08-07T07:47:12.000Z',
+  authors: ['tonyspiro'],
+  url: '/guides/build-and-deploy-nextjs-blog-cosmic',
+  example:
+    'https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic&env=COSMIC_BUCKET_SLUG,COSMIC_READ_KEY,COSMIC_PREVIEW_SECRET&envDescription=Required%20to%20connect%20the%20app%20with%20Cosmic&envLink=https://vercel.link/cms-cosmic-env',
+  image:
+    'https://og-image.now.sh/**Build%20and%20deploy%20a%20Next.js%20blog**%20%3Cbr%2F%3Ewith%20Cosmic%20and%20Vercel.png?theme=light&md=1&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fweb-assets.cosmicjs.com%2Fimages%2Flogo.svg',
+  editUrl: 'pages/guides/build-and-deploy-nextjs-blog-cosmic.mdx',
+  name: 'Next.js + Cosmic',
+  type: 'site',
+  demo: 'https://cosmic-next-blog.vercel.app/',
+  lastEdited: '2020-08-07T03:15:27.000Z',
+  rank: 1,
+}
+
+This example showcases the Next.js [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using the [Cosmic](https://www.cosmicjs.com/) [headless CMS](https://www.cosmicjs.com/headless-cms) as the data source.
+
+<Image
+  src="https://og-image.now.sh/**Build%20and%20deploy%20a%20Next.js%20blog**%20%3Cbr%2F%3Ewith%20Cosmic%20and%20Vercel.png?theme=light&md=1&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fweb-assets.cosmicjs.com%2Fimages%2Flogo.svg"
+  width={2048 / 2.5}
+  height={1170 / 2.5}
+/>
+
+### Step 1. Create an Account and a Project on Cosmic
+
+First, [create an account on Cosmic](https://www.cosmicjs.com).
+
+### Step 2. Install the Next.js Static Blog App
+
+After creating an account, install the [Next.js Static Blog](https://www.cosmicjs.com/apps/nextjs-static-blog) app from the Cosmic App Marketplace. [Click the "Select App" button](https://www.cosmicjs.com/apps/nextjs-static-blog) to install the demo content in a new Bucket. You can also [view a working demo](https://cosmic-next-blog.vercel.app/), screenshot below:
+
+<Image
+  alt="Cosmic Next.js Blog Screenshot"
+  src="https://cdn.cosmicjs.com/34bdf0a0-9d02-11ea-9d0a-45b8804d1af8-cosmic-nextjs-cms-screenshot-1.png"
+  width="100%"
+/>
+
+### Step 3. Set up Environment Variables
+
+In your Bucket that now has demo content, go to the **Settings** menu in the left sidebar and click **Basic Settings**. Find your Bucket slug and Bucket read key.
+
+Next, copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+
+```bash
+cp .env.local.example .env.local
+```
+
+Then set each variable on `.env.local`:
+
+- `COSMIC_BUCKET_SLUG` should be the **Bucket slug** key under **Basic Settings**.
+- `COSMIC_READ_KEY` should be the **Read Key** under **API Access**.
+- `COSMIC_PREVIEW_SECRET` can be any random string (but avoid spaces) - this is used for [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode).
+
+Your `.env.local` file should look like this:
+
+```bash
+COSMIC_BUCKET_SLUG=...
+COSMIC_READ_KEY=...
+COSMIC_PREVIEW_SECRET=...
+```
+
+### Step 4. Run Next.js in Development Mode
+
+```bash
+npm install
+npm run dev
+
+# or
+
+yarn install
+yarn dev
+```
+
+Your blog should be up and running on <http://localhost:3000>! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
+
+### Step 5. Check Out the Code
+
+#### Page Setup
+
+Looking at the code, you'll see how simple this blog is set up. Here's the code from the file `/pages/posts/[slug].js` that displays a single blog post with the dynamic Object `slug` from Cosmic:
+
+```javascript
+// ./pages/posts/[slug].js
+import { useRouter } from 'next/router'
+import ErrorPage from 'next/error'
+import Container from '@/components/container'
+import PostBody from '@/components/post-body'
+import MoreStories from '@/components/more-stories'
+import Header from '@/components/header'
+import PostHeader from '@/components/post-header'
+import SectionSeparator from '@/components/section-separator'
+import Layout from '@/components/layout'
+import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api'
+import PostTitle from '@/components/post-title'
+import Head from 'next/head'
+import { CMS_NAME } from '@/lib/constants'
+import markdownToHtml from '@/lib/markdownToHtml'
+
+export default function Post({ post, morePosts, preview }) {
+  const router = useRouter()
+  if (!router.isFallback && !post?.slug) {
+    return <ErrorPage statusCode={404} />
+  }
+  return (
+    <Layout preview={preview}>
+      <Container>
+        <Header />
+        {router.isFallback ? (
+          <PostTitle>Loading…</PostTitle>
+        ) : (
+          <>
+            <article>
+              <Head>
+                <title>
+                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                </title>
+                <meta
+                  property="og:image"
+                  content={post.metadata.cover_image.imgix_url}
+                />
+              </Head>
+              <PostHeader
+                title={post.title}
+                coverImage={post.metadata.cover_image}
+                date={post.created_at}
+                author={post.metadata.author}
+              />
+              <PostBody content={post.content} />
+            </article>
+            <SectionSeparator />
+            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          </>
+        )}
+      </Container>
+    </Layout>
+  )
+}
+
+export async function getStaticProps({ params, preview = null }) {
+  const data = await getPostAndMorePosts(params.slug, preview)
+  const content = await markdownToHtml(data.post?.metadata?.content || '')
+
+  return {
+    props: {
+      preview,
+      post: {
+        ...data.post,
+        content,
+      },
+      morePosts: data.morePosts || [],
+    },
+  }
+}
+
+export async function getStaticPaths() {
+  const allPosts = (await getAllPostsWithSlug()) || []
+  return {
+    paths: allPosts.map((post) => `/posts/${post.slug}`),
+    fallback: true,
+  }
+}
+```
+
+#### Retrieving Content
+
+Cosmic content is retrieved in the `lib/api.js` file making requests to the Cosmic API using the [Cosmic NPM module](https://www.npmjs.com/package/cosmicjs).
+
+```javascript
+// ./lib/api.js
+import Cosmic from 'cosmicjs'
+
+const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG
+const READ_KEY = process.env.COSMIC_READ_KEY
+
+const bucket = Cosmic().bucket({
+  slug: BUCKET_SLUG,
+  read_key: READ_KEY,
+})
+
+const is404 = (error) => /not found/i.test(error.message)
+
+export async function getPreviewPostBySlug(slug) {
+  const params = {
+    slug,
+    props: 'slug',
+    status: 'all',
+  }
+
+  try {
+    const data = await bucket.getObject(params)
+    return data.object
+  } catch (error) {
+    // Don't throw if an slug doesn't exist
+    if (is404(error)) return
+    throw error
+  }
+}
+
+export async function getAllPostsWithSlug() {
+  const params = {
+    type: 'posts',
+    props: 'slug',
+  }
+  const data = await bucket.getObjects(params)
+  return data.objects
+}
+
+export async function getAllPostsForHome(preview) {
+  const params = {
+    type: 'posts',
+    props: 'title,slug,metadata,created_at',
+    ...(preview && { status: 'all' }),
+  }
+  const data = await bucket.getObjects(params)
+  return data.objects
+}
+
+export async function getPostAndMorePosts(slug, preview) {
+  const singleObjectParams = {
+    slug,
+    props: 'slug,title,metadata,created_at',
+    ...(preview && { status: 'all' }),
+  }
+  const moreObjectParams = {
+    type: 'posts',
+    limit: 3,
+    props: 'title,slug,metadata,created_at',
+    ...(preview && { status: 'all' }),
+  }
+  const object = await bucket.getObject(singleObjectParams).catch((error) => {
+    // Don't throw if an slug doesn't exist
+    if (is404(error)) return
+    throw error
+  })
+  const moreObjects = await bucket.getObjects(moreObjectParams)
+  const morePosts = moreObjects.objects
+    ?.filter(({ slug: object_slug }) => object_slug !== slug)
+    .slice(0, 2)
+
+  return {
+    post: object?.object,
+    morePosts,
+  }
+}
+```
+
+#### Image Optimization
+
+And one of the reasons this blog has such a [high Lighthouse score](https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fcosmic-next-blog.vercel.app%2F), is because we are using the [imgix react component](https://github.com/imgix/react-imgix) to serve the exact image size, type, and settings needed for best delivery and performance. All Cosmic accounts includes the [imgix image optimization](https://www.imgix.com/) service. Check out the way the `cover-image.js` component is constructed:
+
+```javascript
+// ./components/cover-image.js
+import cn from 'classnames'
+import Link from 'next/link'
+import Imgix from 'react-imgix'
+
+export default function CoverImage({ title, url, slug }) {
+  const image = (
+    <Imgix
+      src={url}
+      alt={`Cover Image for ${title}`}
+      className={cn('lazyload shadow-small', {
+        'hover:shadow-medium transition-shadow duration-200': slug,
+      })}
+      sizes="100vw"
+      attributeConfig={{
+        src: 'data-src',
+        srcSet: 'data-srcset',
+        sizes: 'data-sizes',
+      }}
+      htmlAttributes={{
+        src: `${url}?auto=format,compress&q=1&blur=500&w=auto`,
+      }}
+    />
+  )
+  return (
+    <div className="-mx-5 sm:mx-0">
+      {slug ? (
+        <Link as={`/posts/${slug}`} href="/posts/[slug]">
+          <a aria-label={title}>{image}</a>
+        </Link>
+      ) : (
+        image
+      )}
+    </div>
+  )
+}
+```
+
+### Step 6. Try Preview Mode
+
+To add the ability to preview content from your Cosmic dashboard go to **Posts > Edit Settings** and scroll down to the "Preview Link" section. (Screenshot below)
+
+<Image
+  alt="Preview Link Screenshot"
+  src="https://cdn.cosmicjs.com/14e6c0f0-a07b-11ea-829b-5b458b05d525-preview-link.png"
+  width="100%"
+/>
+
+Add your live URL or localhost development URL which includes your chosen preview secret and `[object_slug]` shortcode. It should look like the following:
+
+```
+http://localhost:3000/api/preview?secret=<secret>&slug=[object_slug]
+```
+
+- `<secret>` is the string you entered for `COSMIC_PREVIEW_SECRET`.
+- `[object_slug]` shortcode will automatically be converted to the post's `slug` attribute.
+
+On Cosmic, go to one of the posts you've created and:
+
+- **Update the title**. For example, you can add `[Draft]` in front of the title.
+- Click **Save Draft**, but **DO NOT** click **Publish**. By doing this, the post will be in the draft state.
+
+Now, if you go to the post page directly on localhost, you won't see the updated title. However, if you use the **Preview Mode**, you'll be able to see the change ([Documentation](https://nextjs.org/docs/advanced-features/preview-mode)).
+
+Next, click the "Preview" button on the Post to see the updated title. (Screenshot below)
+
+<Image
+  src="https://cdn.cosmicjs.com/80f42680-a07a-11ea-829b-5b458b05d525-preview-button.png"
+  width="300"
+/>
+
+To exit preview mode, you can click on **Click here to exit preview mode** at the top of the blog.
+
+### Step 6. Deploy on Vercel
+
+You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+#### Deploy Your Local Project
+
+To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/import/git?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+
+**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
+
+<DeploySection meta={meta} />
+
+export default ({ children }) => <Guide meta={meta}>{children}</Guide>
+
+export const config = {
+  amp: 'hybrid',
+}
