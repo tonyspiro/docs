@@ -1,17 +1,20 @@
 [
   {
     "title": "Build and Deploy a Next.js Blog with Cosmic and Vercel",
-    "description": "This guide will help you deploy a highly-performant static Next.js blog with Cosmic and Vercel in minutes.",
-    "published": "2020-08-07T07:47:12.000Z",
+    "description": "Create a Cosmic backed Next.js app and deploy it with Vercel.",
+    "published": "2020-08-14T07:47:12.000Z",
     "authors": ["tonyspiro"],
-    "url": "/guides/build-and-deploy-nextjs-blog-cosmic",
-    "example": "https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic&env=COSMIC_BUCKET_SLUG,COSMIC_READ_KEY,COSMIC_PREVIEW_SECRET&envDescription=Required%20to%20connect%20the%20app%20with%20Cosmic&envLink=https://vercel.link/cms-cosmic-env",
+    "url": "/guides/deploying-next-and-cosmic-with-vercel",
+    "env": ["COSMIC_BUCKET_SLUG", "COSMIC_READ_KEY", "COSMIC_PREVIEW_SECRET"],
+    "envDescription": ["Required to connect the app with Cosmic."],
+    "envLink": ["https://vercel.link/cms-cosmic-env"],
+    "example": "https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic",
     "image": "https://og-image.now.sh/**Build%20and%20deploy%20a%20Next.js%20blog**%20%3Cbr%2F%3Ewith%20Cosmic%20and%20Vercel.png?theme=light&md=1&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fweb-assets.cosmicjs.com%2Fimages%2Flogo.svg",
-    "editUrl": "pages/guides/build-and-deploy-nextjs-blog-cosmic.mdx",
+    "editUrl": "pages/guides/deploying-next-and-cosmic-with-vercel.mdx",
     "name": "Next.js + Cosmic",
     "type": "site",
     "demo": "https://cosmic-next-blog.vercel.app/",
-    "lastEdited": "2020-08-07T03:15:27.000Z",
+    "lastEdited": "2020-08-14T03:15:27.000Z",
     "rank": 1
   },
   {

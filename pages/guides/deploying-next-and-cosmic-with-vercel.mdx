@@ -9,24 +9,27 @@ import DeploySection from '~/components/guides/deploy-section'
 
 export const meta = {
   title: 'Build and Deploy a Next.js Blog with Cosmic and Vercel',
-  description:
-    'This guide will help you deploy a highly-performant static Next.js blog with Cosmic and Vercel in minutes.',
-  published: '2020-08-07T07:47:12.000Z',
+  description: 'Create a Cosmic backed Next.js app and deploy it with Vercel.',
+  published: '2020-08-14T07:47:12.000Z',
   authors: ['tonyspiro'],
-  url: '/guides/build-and-deploy-nextjs-blog-cosmic',
-  example:
-    'https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic&env=COSMIC_BUCKET_SLUG,COSMIC_READ_KEY,COSMIC_PREVIEW_SECRET&envDescription=Required%20to%20connect%20the%20app%20with%20Cosmic&envLink=https://vercel.link/cms-cosmic-env',
+  url: '/guides/deploying-next-and-cosmic-with-vercel',
+  env: ['COSMIC_BUCKET_SLUG', 'COSMIC_READ_KEY', 'COSMIC_PREVIEW_SECRET'],
+  envDescription: ['Required to connect the app with Cosmic.'],
+  envLink: ['https://vercel.link/cms-cosmic-env'],
+  example: 'https://github.com/vercel/next.js/tree/canary/examples/cms-cosmic',
   image:
     'https://og-image.now.sh/**Build%20and%20deploy%20a%20Next.js%20blog**%20%3Cbr%2F%3Ewith%20Cosmic%20and%20Vercel.png?theme=light&md=1&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fweb-assets.cosmicjs.com%2Fimages%2Flogo.svg',
-  editUrl: 'pages/guides/build-and-deploy-nextjs-blog-cosmic.mdx',
+  editUrl: 'pages/guides/deploying-next-and-cosmic-with-vercel.mdx',
   name: 'Next.js + Cosmic',
   type: 'site',
   demo: 'https://cosmic-next-blog.vercel.app/',
-  lastEdited: '2020-08-07T03:15:27.000Z',
+  lastEdited: '2020-08-14T03:15:27.000Z',
   rank: 1,
 }
 
-This example showcases the Next.js [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using the [Cosmic](https://www.cosmicjs.com/) [headless CMS](https://www.cosmicjs.com/headless-cms) as the data source.
+[Cosmic](https://www.cosmicjs.com/) is a [headless CMS](https://www.cosmicjs.com/headless-cms) that empowers your team to build content-powered apps faster together.
+
+This guides showcases how to use Cosmic with Next.js [Static Generation](https://nextjs.org/docs/basic-features/pages) to generate static pages, delivering a lightning fast experience for your users.
 
 <Image
   src="https://og-image.now.sh/**Build%20and%20deploy%20a%20Next.js%20blog**%20%3Cbr%2F%3Ewith%20Cosmic%20and%20Vercel.png?theme=light&md=1&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fweb-assets.cosmicjs.com%2Fimages%2Flogo.svg"
@@ -34,13 +37,13 @@ This example showcases the Next.js [Static Generation](https://nextjs.org/docs/b
   height={1170 / 2.5}
 />
 
-### Step 1. Create an Account and a Project on Cosmic
+## Step 1: Creating a Cosmic + Next.js Project
 
-First, [create an account on Cosmic](https://www.cosmicjs.com).
+To get started, [create an account on Cosmic](https://app.cosmicjs.com/signup). Upon signup, you will be taken through a [product tour](https://app.cosmicjs.com/add-bucket?show_tour=true), this will guide you through the process of creating a Bucket and starting your first project.
 
-### Step 2. Install the Next.js Static Blog App
+At the end of the tour, choose the option to "Start with an App" and select the [Next.js Static Blog](https://www.cosmicjs.com/apps/nextjs-static-blog) app from the Cosmic App Marketplace. [Click the "Select App" button](https://www.cosmicjs.com/apps/nextjs-static-blog) to install the demo content in a new Bucket and confirm by clicking "Start with App".
 
-After creating an account, install the [Next.js Static Blog](https://www.cosmicjs.com/apps/nextjs-static-blog) app from the Cosmic App Marketplace. [Click the "Select App" button](https://www.cosmicjs.com/apps/nextjs-static-blog) to install the demo content in a new Bucket. You can also [view a working demo](https://cosmic-next-blog.vercel.app/), screenshot below:
+You can also [view a working demo](https://cosmic-next-blog.vercel.app/), the app you will create is shown in the screenshot below:
 
 <Image
   alt="Cosmic Next.js Blog Screenshot"
@@ -48,52 +51,65 @@ After creating an account, install the [Next.js Static Blog](https://www.cosmicj
   width="100%"
 />
 
-### Step 3. Set up Environment Variables
+<Caption>The Next.js + Cosmic demo app.</Caption>
 
-In your Bucket that now has demo content, go to the **Settings** menu in the left sidebar and click **Basic Settings**. Find your Bucket slug and Bucket read key.
+Initialize the application locally with following command:
 
-Next, copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+<Snippet
+  dark
+  text="npm init next-app --example cms-cosmic nextjs-cosmic-app && cd nextjs-cosmic-app"
+/>
+<Caption>
+  Initializing a Next.js + Cosmic app and entering into the project directory.
+</Caption>
+
+## Step 2: Set up Environment Variables
+
+In your Bucket that now has demo content, go to the **Settings** menu in the left sidebar and click "Basic Settings". Here you will find your **Bucket slug** and **Bucket read key**.
+
+Next, rename the `.env.local.example` file in this directory to `.env.local` - this file is ignored by Git by default:
+
+Using the values for **Bucket slug** and **Bucket read key**, set each variable in the `.env.local` file:
+
+- `COSMIC_BUCKET_SLUG`
+- `COSMIC_READ_KEY`
+- `COSMIC_PREVIEW_SECRET` - a random string without spaces - this is used for [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode).
+
+Your `.env.local` file values should look similar to this:
 
 ```bash
-cp .env.local.example .env.local
+COSMIC_BUCKET_SLUG=2243fdc0-de07-11ea-ab7f-db9a992f6fd1
+COSMIC_READ_KEY=77H1zN7bTktdsgekxyB9FTpOrlVNE3KUP0UTptn5EqA7T0J8Qt
+COSMIC_PREVIEW_SECRET=iwvrzpakhaavqbihwlrv
 ```
 
-Then set each variable on `.env.local`:
+<Caption>
+  An example <InlineCode>.env.local</InlineCode> file for your Next.js + Cosmic
+  app.
+</Caption>
 
-- `COSMIC_BUCKET_SLUG` should be the **Bucket slug** key under **Basic Settings**.
-- `COSMIC_READ_KEY` should be the **Read Key** under **API Access**.
-- `COSMIC_PREVIEW_SECRET` can be any random string (but avoid spaces) - this is used for [Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode).
+## Step 3: Running the Next.js app Locally
 
-Your `.env.local` file should look like this:
+After installing the required dependencies, you are now able to run and develop your Next.js + Cosmic app locally with the following command:
 
-```bash
-COSMIC_BUCKET_SLUG=...
-COSMIC_READ_KEY=...
-COSMIC_PREVIEW_SECRET=...
-```
+<Snippet dark text="yarn dev" />
+<Caption>
+  Running the app locally with the <InlineCode>yarn dev</InlineCode> command.
+</Caption>
 
-### Step 4. Run Next.js in Development Mode
+## Step 4: Understanding the Code
 
-```bash
-npm install
-npm run dev
+To understand how the app works, there are three main areas to explore:
 
-# or
+- [Page Setup](#page-setup)
+- [Retrieving Content](#retrieving-content)
+- [Image Optimization](#image-optimization)
 
-yarn install
-yarn dev
-```
+### Page Setup
 
-Your blog should be up and running on <http://localhost:3000>! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
+Each page displays a single blog post with the dynamic Object `slug` from Cosmic:
 
-### Step 5. Check Out the Code
-
-#### Page Setup
-
-Looking at the code, you'll see how simple this blog is set up. Here's the code from the file `/pages/posts/[slug].js` that displays a single blog post with the dynamic Object `slug` from Cosmic:
-
-```javascript
-// ./pages/posts/[slug].js
+```jsx
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '@/components/container'
@@ -174,12 +190,16 @@ export async function getStaticPaths() {
 }
 ```
 
-#### Retrieving Content
+<Caption>
+  The <InlineCode>pages/posts/[slug].js</InlineCode> file for your Next.js +
+  Cosmic app.
+</Caption>
+
+### Retrieving Content
 
 Cosmic content is retrieved in the `lib/api.js` file making requests to the Cosmic API using the [Cosmic NPM module](https://www.npmjs.com/package/cosmicjs).
 
 ```javascript
-// ./lib/api.js
 import Cosmic from 'cosmicjs'
 
 const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG
@@ -203,7 +223,7 @@ export async function getPreviewPostBySlug(slug) {
     const data = await bucket.getObject(params)
     return data.object
   } catch (error) {
-    // Don't throw if an slug doesn't exist
+    // Don't throw if a slug doesn't exist
     if (is404(error)) return
     throw error
   }
@@ -257,12 +277,15 @@ export async function getPostAndMorePosts(slug, preview) {
 }
 ```
 
-#### Image Optimization
+<Caption>
+  The <InlineCode>lib/api.js</InlineCode> file for your Next.js + Cosmic app.
+</Caption>
 
-And one of the reasons this blog has such a [high Lighthouse score](https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fcosmic-next-blog.vercel.app%2F), is because we are using the [imgix react component](https://github.com/imgix/react-imgix) to serve the exact image size, type, and settings needed for best delivery and performance. All Cosmic accounts includes the [imgix image optimization](https://www.imgix.com/) service. Check out the way the `cover-image.js` component is constructed:
+### Image Optimization
 
-```javascript
-// ./components/cover-image.js
+One of the reasons this blog has a [high Lighthouse score](https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fcosmic-next-blog.vercel.app%2F), is because it uses the [imgix react component](https://github.com/imgix/react-imgix) to serve the exact image size, type, and settings needed for best delivery and performance. All Cosmic accounts includes the [imgix image optimization](https://www.imgix.com/) service. Take a look at how the `cover-image.js` component is constructed:
+
+```jsx
 import cn from 'classnames'
 import Link from 'next/link'
 import Imgix from 'react-imgix'
@@ -300,9 +323,14 @@ export default function CoverImage({ title, url, slug }) {
 }
 ```
 
-### Step 6. Try Preview Mode
+<Caption>
+  The <InlineCode>components/cover-image.js</InlineCode> file for your Next.js +
+  Cosmic app.
+</Caption>
 
-To add the ability to preview content from your Cosmic dashboard go to **Posts > Edit Settings** and scroll down to the "Preview Link" section. (Screenshot below)
+## Step 5: Using Preview Mode
+
+To add the ability to preview content from your Cosmic dashboard, however over **Posts** and click the settings cog. Scroll down to the "Preview Link" section which is shown in the screenshot below:
 
 <Image
   alt="Preview Link Screenshot"
@@ -310,40 +338,36 @@ To add the ability to preview content from your Cosmic dashboard go to **Posts >
   width="100%"
 />
 
-Add your live URL or localhost development URL which includes your chosen preview secret and `[object_slug]` shortcode. It should look like the following:
+<Caption>
+  The Preview Link section of the Posts settings in the Cosmic dashboard.
+</Caption>
 
-```
-http://localhost:3000/api/preview?secret=<secret>&slug=[object_slug]
-```
+Add your live URL or localhost development URL which includes your chosen `preview secret` and `[object_slug]` shortcode.
 
 - `<secret>` is the string you entered for `COSMIC_PREVIEW_SECRET`.
 - `[object_slug]` shortcode will automatically be converted to the post's `slug` attribute.
 
-On Cosmic, go to one of the posts you've created and:
+After adding the **Preview Link**, return to the top of the page and click "Save Object Type".
+
+From the Cosmic dashboard, go to one of the posts you've created and:
 
 - **Update the title**. For example, you can add `[Draft]` in front of the title.
 - Click **Save Draft**, but **DO NOT** click **Publish**. By doing this, the post will be in the draft state.
 
 Now, if you go to the post page directly on localhost, you won't see the updated title. However, if you use the **Preview Mode**, you'll be able to see the change ([Documentation](https://nextjs.org/docs/advanced-features/preview-mode)).
 
-Next, click the "Preview" button on the Post to see the updated title. (Screenshot below)
+Next, click the "Preview" button on the Post to see the updated title as shown in the screenshot below:
 
 <Image
   src="https://cdn.cosmicjs.com/80f42680-a07a-11ea-829b-5b458b05d525-preview-button.png"
   width="300"
 />
 
-To exit preview mode, you can click on **Click here to exit preview mode** at the top of the blog.
+<Caption>
+  The Preview option, available to the right of a Post in the Cosmic dashboard.
+</Caption>
 
-### Step 6. Deploy on Vercel
-
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-#### Deploy Your Local Project
-
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/import/git?utm_source=github&utm_medium=readme&utm_campaign=next-example).
-
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
+## Step 6: Deploying Your App with Vercel
 
 <DeploySection meta={meta} />
 
